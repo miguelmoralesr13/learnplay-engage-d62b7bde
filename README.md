@@ -1,69 +1,81 @@
-# Welcome to your Lovable project
 
-## Project info
+# English Learning App
 
-**URL**: https://lovable.dev/projects/b7d52732-867f-4ecd-9f24-5e20f8f4a003
+## Descripción general
 
-## How can I edit this code?
+Esta aplicación está diseñada para ayudar a los usuarios a aprender inglés a través de juegos interactivos. La plataforma ofrece una experiencia de aprendizaje gamificada que hace que el proceso sea entretenido y efectivo.
 
-There are several ways of editing your application.
+## Características principales
 
-**Use Lovable**
+### Juegos de aprendizaje
+- **Categorías diversas**: Vocabulario, gramática, escucha, lectura y habla
+- **Múltiples niveles de dificultad**: Principiante, intermedio y avanzado
+- **Configuración personalizable**: Opciones de temporizador y sonido
+- **Retroalimentación detallada**: Resultados y estadísticas al finalizar cada juego
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b7d52732-867f-4ecd-9f24-5e20f8f4a003) and start prompting.
+### Sistema de progreso
+- **Seguimiento de experiencia**: Gana XP al completar juegos
+- **Sistema de niveles**: Avanza de nivel al acumular suficiente experiencia
+- **Estadísticas personales**: Visualiza tu rendimiento y mejora con el tiempo
+- **Historial de actividad**: Registro de todos los juegos completados
 
-Changes made via Lovable will be committed automatically to this repo.
+### Interfaz de usuario
+- **Diseño moderno**: Interfaz limpia y atractiva con elementos de vidrio (glass design)
+- **Experiencia responsiva**: Funciona en dispositivos móviles y de escritorio
+- **Navegación intuitiva**: Fácil acceso a todas las secciones de la aplicación
+- **Filtros y búsqueda**: Encuentra rápidamente los juegos que te interesan
 
-**Use your preferred IDE**
+## Tecnologías utilizadas
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **React**: Biblioteca para construir interfaces de usuario
+- **Vite**: Herramienta de compilación rápida para desarrollo
+- **TypeScript**: Superset de JavaScript con tipado estático
+- **Tailwind CSS**: Framework de CSS para diseño rápido y consistente
+- **React Router**: Navegación entre páginas
+- **Zustand**: Gestión de estado global
+- **Framer Motion**: Animaciones fluidas
+- **Lucide Icons**: Iconos modernos y limpios
+- **Tanstack Query**: Gestión de datos y estado del servidor
+- **Shadcn/UI**: Componentes de UI reutilizables
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Estructura de la aplicación
 
-Follow these steps:
+### Páginas principales
+- **Inicio**: Introducción a la aplicación
+- **Juegos**: Catálogo de juegos disponibles con filtros
+- **Progreso**: Visualización del avance del usuario
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Componentes reutilizables
+- **GameConfig**: Configuración previa al inicio de un juego
+- **GameFeedback**: Resultados y estadísticas posteriores al juego
+- **GameCard**: Tarjetas para mostrar los juegos disponibles
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Gestión de estado
+- **gameStore**: Almacena información sobre juegos, progreso del usuario y configuraciones
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Flujo de usuario
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. El usuario navega al catálogo de juegos
+2. Selecciona un juego según su interés
+3. Configura los parámetros del juego (dificultad, temporizador, etc.)
+4. Juega la partida
+5. Recibe retroalimentación sobre su desempeño
+6. Gana experiencia y sube de nivel
+7. Visualiza su progreso en la sección correspondiente
 
-**Edit a file directly in GitHub**
+## Cómo añadir nuevos juegos
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Para añadir un nuevo juego a la aplicación:
 
-**Use GitHub Codespaces**
+1. Crear una nueva página para el juego en `src/pages/games/`
+2. Utilizar los componentes reutilizables `GameConfig` y `GameFeedback`
+3. Añadir la información del juego al arreglo `games` en `src/store/gameStore.ts`
+4. Agregar la ruta del juego en `src/App.tsx`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Próximas mejoras
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b7d52732-867f-4ecd-9f24-5e20f8f4a003) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Implementación de más juegos educativos
+- Sistema de logros y recompensas
+- Modo multijugador para competir con amigos
+- Integración con APIs para contenido dinámico
+- Personalización del perfil de usuario
