@@ -1,4 +1,5 @@
 
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Award, BarChart2, Clock, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -54,7 +55,7 @@ const GameFeedback: React.FC<GameFeedbackProps> = ({
   };
   
   // Update user progress when component mounts
-  React.useEffect(() => {
+  useEffect(() => {
     updateUserProgress(gameId, score);
   }, []);
 
