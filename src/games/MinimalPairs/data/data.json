@@ -1,0 +1,1804 @@
+{
+    "data": [
+        {
+            "id": "pair-1",
+            "word1": {
+                "text": "ship",
+                "phonetic": "/ʃɪp/"
+            },
+            "word2": {
+                "text": "sheep",
+                "phonetic": "/ʃiːp/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪ/",
+                "second": "/iː/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-2",
+            "word1": {
+                "text": "bit",
+                "phonetic": "/bɪt/"
+            },
+            "word2": {
+                "text": "beat",
+                "phonetic": "/biːt/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪ/",
+                "second": "/iː/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-3",
+            "word1": {
+                "text": "pen",
+                "phonetic": "/pen/"
+            },
+            "word2": {
+                "text": "pan",
+                "phonetic": "/pæn/"
+            },
+            "focusPhoneme": {
+                "first": "/e/",
+                "second": "/æ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-4",
+            "word1": {
+                "text": "cup",
+                "phonetic": "/kʌp/"
+            },
+            "word2": {
+                "text": "cap",
+                "phonetic": "/kæp/"
+            },
+            "focusPhoneme": {
+                "first": "/ʌ/",
+                "second": "/æ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-5",
+            "word1": {
+                "text": "pull",
+                "phonetic": "/pʊl/"
+            },
+            "word2": {
+                "text": "pool",
+                "phonetic": "/puːl/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊ/",
+                "second": "/uː/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-6",
+            "word1": {
+                "text": "cot",
+                "phonetic": "/kɒt/"
+            },
+            "word2": {
+                "text": "caught",
+                "phonetic": "/kɔːt/"
+            },
+            "focusPhoneme": {
+                "first": "/ɒ/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-7",
+            "word1": {
+                "text": "full",
+                "phonetic": "/fʊl/"
+            },
+            "word2": {
+                "text": "fool",
+                "phonetic": "/fuːl/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊ/",
+                "second": "/uː/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-8",
+            "word1": {
+                "text": "bad",
+                "phonetic": "/bæd/"
+            },
+            "word2": {
+                "text": "bed",
+                "phonetic": "/bed/"
+            },
+            "focusPhoneme": {
+                "first": "/æ/",
+                "second": "/e/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-9",
+            "word1": {
+                "text": "cut",
+                "phonetic": "/kʌt/"
+            },
+            "word2": {
+                "text": "cart",
+                "phonetic": "/kɑːt/"
+            },
+            "focusPhoneme": {
+                "first": "/ʌ/",
+                "second": "/ɑː/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-10",
+            "word1": {
+                "text": "luck",
+                "phonetic": "/lʌk/"
+            },
+            "word2": {
+                "text": "look",
+                "phonetic": "/lʊk/"
+            },
+            "focusPhoneme": {
+                "first": "/ʌ/",
+                "second": "/ʊ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-11",
+            "word1": {
+                "text": "hat",
+                "phonetic": "/hæt/"
+            },
+            "word2": {
+                "text": "hot",
+                "phonetic": "/hɒt/"
+            },
+            "focusPhoneme": {
+                "first": "/æ/",
+                "second": "/ɒ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-12",
+            "word1": {
+                "text": "sit",
+                "phonetic": "/sɪt/"
+            },
+            "word2": {
+                "text": "seat",
+                "phonetic": "/siːt/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪ/",
+                "second": "/iː/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-13",
+            "word1": {
+                "text": "not",
+                "phonetic": "/nɒt/"
+            },
+            "word2": {
+                "text": "note",
+                "phonetic": "/nəʊt/"
+            },
+            "focusPhoneme": {
+                "first": "/ɒ/",
+                "second": "/əʊ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-14",
+            "word1": {
+                "text": "run",
+                "phonetic": "/rʌn/"
+            },
+            "word2": {
+                "text": "ran",
+                "phonetic": "/ræn/"
+            },
+            "focusPhoneme": {
+                "first": "/ʌ/",
+                "second": "/æ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-15",
+            "word1": {
+                "text": "book",
+                "phonetic": "/bʊk/"
+            },
+            "word2": {
+                "text": "boot",
+                "phonetic": "/buːt/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊ/",
+                "second": "/uː/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-16",
+            "word1": {
+                "text": "bet",
+                "phonetic": "/bet/"
+            },
+            "word2": {
+                "text": "bat",
+                "phonetic": "/bæt/"
+            },
+            "focusPhoneme": {
+                "first": "/e/",
+                "second": "/æ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-17",
+            "word1": {
+                "text": "bird",
+                "phonetic": "/bɜːd/"
+            },
+            "word2": {
+                "text": "bed",
+                "phonetic": "/bed/"
+            },
+            "focusPhoneme": {
+                "first": "/ɜː/",
+                "second": "/e/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-18",
+            "word1": {
+                "text": "father",
+                "phonetic": "/ˈfɑːðə/"
+            },
+            "word2": {
+                "text": "feather",
+                "phonetic": "/ˈfeðə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɑː/",
+                "second": "/e/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-19",
+            "word1": {
+                "text": "pool",
+                "phonetic": "/puːl/"
+            },
+            "word2": {
+                "text": "pull",
+                "phonetic": "/pʊl/"
+            },
+            "focusPhoneme": {
+                "first": "/uː/",
+                "second": "/ʊ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-20",
+            "word1": {
+                "text": "cat",
+                "phonetic": "/kæt/"
+            },
+            "word2": {
+                "text": "cut",
+                "phonetic": "/kʌt/"
+            },
+            "focusPhoneme": {
+                "first": "/æ/",
+                "second": "/ʌ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-21",
+            "word1": {
+                "text": "saw",
+                "phonetic": "/sɔː/"
+            },
+            "word2": {
+                "text": "so",
+                "phonetic": "/səʊ/"
+            },
+            "focusPhoneme": {
+                "first": "/ɔː/",
+                "second": "/əʊ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-22",
+            "word1": {
+                "text": "her",
+                "phonetic": "/hɜː/"
+            },
+            "word2": {
+                "text": "hair",
+                "phonetic": "/heə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɜː/",
+                "second": "/eə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-23",
+            "word1": {
+                "text": "here",
+                "phonetic": "/hɪə/"
+            },
+            "word2": {
+                "text": "hear",
+                "phonetic": "/hɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪə/",
+                "second": "/ɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-24",
+            "word1": {
+                "text": "tour",
+                "phonetic": "/tʊə/"
+            },
+            "word2": {
+                "text": "tore",
+                "phonetic": "/tɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-25",
+            "word1": {
+                "text": "fair",
+                "phonetic": "/feə/"
+            },
+            "word2": {
+                "text": "fear",
+                "phonetic": "/fɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/eə/",
+                "second": "/ɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-26",
+            "word1": {
+                "text": "fan",
+                "phonetic": "/fæn/"
+            },
+            "word2": {
+                "text": "van",
+                "phonetic": "/væn/"
+            },
+            "focusPhoneme": {
+                "first": "/f/",
+                "second": "/v/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-27",
+            "word1": {
+                "text": "thin",
+                "phonetic": "/θɪn/"
+            },
+            "word2": {
+                "text": "sin",
+                "phonetic": "/sɪn/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/s/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-28",
+            "word1": {
+                "text": "rice",
+                "phonetic": "/raɪs/"
+            },
+            "word2": {
+                "text": "lice",
+                "phonetic": "/laɪs/"
+            },
+            "focusPhoneme": {
+                "first": "/r/",
+                "second": "/l/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-29",
+            "word1": {
+                "text": "zip",
+                "phonetic": "/zɪp/"
+            },
+            "word2": {
+                "text": "sip",
+                "phonetic": "/sɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/z/",
+                "second": "/s/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-30",
+            "word1": {
+                "text": "bath",
+                "phonetic": "/bɑːθ/"
+            },
+            "word2": {
+                "text": "bat",
+                "phonetic": "/bæt/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/t/",
+                "position": "final"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-31",
+            "word1": {
+                "text": "ship",
+                "phonetic": "/ʃɪp/"
+            },
+            "word2": {
+                "text": "chip",
+                "phonetic": "/tʃɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/ʃ/",
+                "second": "/tʃ/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-32",
+            "word1": {
+                "text": "breathe",
+                "phonetic": "/briːð/"
+            },
+            "word2": {
+                "text": "breed",
+                "phonetic": "/briːd/"
+            },
+            "focusPhoneme": {
+                "first": "/ð/",
+                "second": "/d/",
+                "position": "final"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-33",
+            "word1": {
+                "text": "measure",
+                "phonetic": "/ˈmeʒə/"
+            },
+            "word2": {
+                "text": "mesher",
+                "phonetic": "/ˈmeʃə/"
+            },
+            "focusPhoneme": {
+                "first": "/ʒ/",
+                "second": "/ʃ/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-34",
+            "word1": {
+                "text": "vision",
+                "phonetic": "/ˈvɪʒən/"
+            },
+            "word2": {
+                "text": "fission",
+                "phonetic": "/ˈfɪʃən/"
+            },
+            "focusPhoneme": {
+                "first": "/ʒ/",
+                "second": "/ʃ/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-35",
+            "word1": {
+                "text": "pat",
+                "phonetic": "/pæt/"
+            },
+            "word2": {
+                "text": "bat",
+                "phonetic": "/bæt/"
+            },
+            "focusPhoneme": {
+                "first": "/p/",
+                "second": "/b/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-36",
+            "word1": {
+                "text": "ten",
+                "phonetic": "/ten/"
+            },
+            "word2": {
+                "text": "den",
+                "phonetic": "/den/"
+            },
+            "focusPhoneme": {
+                "first": "/t/",
+                "second": "/d/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-37",
+            "word1": {
+                "text": "cat",
+                "phonetic": "/kæt/"
+            },
+            "word2": {
+                "text": "gat",
+                "phonetic": "/ɡæt/"
+            },
+            "focusPhoneme": {
+                "first": "/k/",
+                "second": "/ɡ/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-38",
+            "word1": {
+                "text": "fan",
+                "phonetic": "/fæn/"
+            },
+            "word2": {
+                "text": "van",
+                "phonetic": "/væn/"
+            },
+            "focusPhoneme": {
+                "first": "/f/",
+                "second": "/v/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-39",
+            "word1": {
+                "text": "sip",
+                "phonetic": "/sɪp/"
+            },
+            "word2": {
+                "text": "zip",
+                "phonetic": "/zɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/s/",
+                "second": "/z/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-40",
+            "word1": {
+                "text": "chip",
+                "phonetic": "/tʃɪp/"
+            },
+            "word2": {
+                "text": "ship",
+                "phonetic": "/ʃɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/tʃ/",
+                "second": "/ʃ/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-41",
+            "word1": {
+                "text": "joke",
+                "phonetic": "/dʒəʊk/"
+            },
+            "word2": {
+                "text": "yoke",
+                "phonetic": "/jəʊk/"
+            },
+            "focusPhoneme": {
+                "first": "/dʒ/",
+                "second": "/j/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-42",
+            "word1": {
+                "text": "light",
+                "phonetic": "/laɪt/"
+            },
+            "word2": {
+                "text": "right",
+                "phonetic": "/raɪt/"
+            },
+            "focusPhoneme": {
+                "first": "/l/",
+                "second": "/r/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-43",
+            "word1": {
+                "text": "mouth",
+                "phonetic": "/maʊθ/"
+            },
+            "word2": {
+                "text": "mouse",
+                "phonetic": "/maʊs/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/s/",
+                "position": "final"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-44",
+            "word1": {
+                "text": "think",
+                "phonetic": "/θɪŋk/"
+            },
+            "word2": {
+                "text": "sink",
+                "phonetic": "/sɪŋk/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/s/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-45",
+            "word1": {
+                "text": "this",
+                "phonetic": "/ðɪs/"
+            },
+            "word2": {
+                "text": "dis",
+                "phonetic": "/dɪs/"
+            },
+            "focusPhoneme": {
+                "first": "/ð/",
+                "second": "/d/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-46",
+            "word1": {
+                "text": "cheap",
+                "phonetic": "/tʃiːp/"
+            },
+            "word2": {
+                "text": "sheep",
+                "phonetic": "/ʃiːp/"
+            },
+            "focusPhoneme": {
+                "first": "/tʃ/",
+                "second": "/ʃ/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-47",
+            "word1": {
+                "text": "jest",
+                "phonetic": "/dʒest/"
+            },
+            "word2": {
+                "text": "yes",
+                "phonetic": "/jes/"
+            },
+            "focusPhoneme": {
+                "first": "/dʒ/",
+                "second": "/j/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-48",
+            "word1": {
+                "text": "sing",
+                "phonetic": "/sɪŋ/"
+            },
+            "word2": {
+                "text": "sin",
+                "phonetic": "/sɪn/"
+            },
+            "focusPhoneme": {
+                "first": "/ŋ/",
+                "second": "/n/",
+                "position": "final"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-49",
+            "word1": {
+                "text": "finger",
+                "phonetic": "/ˈfɪŋɡə/"
+            },
+            "word2": {
+                "text": "singer",
+                "phonetic": "/ˈsɪŋə/"
+            },
+            "focusPhoneme": {
+                "first": "/ŋɡ/",
+                "second": "/ŋ/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-50",
+            "word1": {
+                "text": "hat",
+                "phonetic": "/hæt/"
+            },
+            "word2": {
+                "text": "at",
+                "phonetic": "/æt/"
+            },
+            "focusPhoneme": {
+                "first": "/h/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-51",
+            "word1": {
+                "text": "father",
+                "phonetic": "/ˈfɑːðə/"
+            },
+            "word2": {
+                "text": "feather",
+                "phonetic": "/ˈfeðə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɑː/",
+                "second": "/e/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-52",
+            "word1": {
+                "text": "bird",
+                "phonetic": "/bɜːd/"
+            },
+            "word2": {
+                "text": "bed",
+                "phonetic": "/bed/"
+            },
+            "focusPhoneme": {
+                "first": "/ɜː/",
+                "second": "/e/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-53",
+            "word1": {
+                "text": "pool",
+                "phonetic": "/puːl/"
+            },
+            "word2": {
+                "text": "pull",
+                "phonetic": "/pʊl/"
+            },
+            "focusPhoneme": {
+                "first": "/uː/",
+                "second": "/ʊ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-54",
+            "word1": {
+                "text": "cat",
+                "phonetic": "/kæt/"
+            },
+            "word2": {
+                "text": "cut",
+                "phonetic": "/kʌt/"
+            },
+            "focusPhoneme": {
+                "first": "/æ/",
+                "second": "/ʌ/",
+                "position": "medial"
+            },
+            "difficulty": "beginner",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-55",
+            "word1": {
+                "text": "saw",
+                "phonetic": "/sɔː/"
+            },
+            "word2": {
+                "text": "so",
+                "phonetic": "/səʊ/"
+            },
+            "focusPhoneme": {
+                "first": "/ɔː/",
+                "second": "/əʊ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-56",
+            "word1": {
+                "text": "her",
+                "phonetic": "/hɜː/"
+            },
+            "word2": {
+                "text": "hair",
+                "phonetic": "/heə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɜː/",
+                "second": "/eə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-57",
+            "word1": {
+                "text": "here",
+                "phonetic": "/hɪə/"
+            },
+            "word2": {
+                "text": "hear",
+                "phonetic": "/hɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪə/",
+                "second": "/ɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-58",
+            "word1": {
+                "text": "tour",
+                "phonetic": "/tʊə/"
+            },
+            "word2": {
+                "text": "tore",
+                "phonetic": "/tɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-59",
+            "word1": {
+                "text": "fair",
+                "phonetic": "/feə/"
+            },
+            "word2": {
+                "text": "fear",
+                "phonetic": "/fɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/eə/",
+                "second": "/ɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-60",
+            "word1": {
+                "text": "poor",
+                "phonetic": "/pʊə/"
+            },
+            "word2": {
+                "text": "pour",
+                "phonetic": "/pɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-61",
+            "word1": {
+                "text": "bear",
+                "phonetic": "/beə/"
+            },
+            "word2": {
+                "text": "beer",
+                "phonetic": "/bɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/eə/",
+                "second": "/ɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-62",
+            "word1": {
+                "text": "sure",
+                "phonetic": "/ʃʊə/"
+            },
+            "word2": {
+                "text": "shore",
+                "phonetic": "/ʃɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/ʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-63",
+            "word1": {
+                "text": "fire",
+                "phonetic": "/faɪə/"
+            },
+            "word2": {
+                "text": "far",
+                "phonetic": "/fɑː/"
+            },
+            "focusPhoneme": {
+                "first": "/aɪə/",
+                "second": "/ɑː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-64",
+            "word1": {
+                "text": "hour",
+                "phonetic": "/aʊə/"
+            },
+            "word2": {
+                "text": "our",
+                "phonetic": "/aʊə/"
+            },
+            "focusPhoneme": {
+                "first": "/aʊə/",
+                "second": "/aʊə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-65",
+            "word1": {
+                "text": "boy",
+                "phonetic": "/bɔɪ/"
+            },
+            "word2": {
+                "text": "buy",
+                "phonetic": "/baɪ/"
+            },
+            "focusPhoneme": {
+                "first": "/ɔɪ/",
+                "second": "/aɪ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-66",
+            "word1": {
+                "text": "cow",
+                "phonetic": "/kaʊ/"
+            },
+            "word2": {
+                "text": "coy",
+                "phonetic": "/kɔɪ/"
+            },
+            "focusPhoneme": {
+                "first": "/aʊ/",
+                "second": "/ɔɪ/",
+                "position": "medial"
+            },
+            "difficulty": "intermediate",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-67",
+            "word1": {
+                "text": "peer",
+                "phonetic": "/pɪə/"
+            },
+            "word2": {
+                "text": "pair",
+                "phonetic": "/peə/"
+            },
+            "focusPhoneme": {
+                "first": "/ɪə/",
+                "second": "/eə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-68",
+            "word1": {
+                "text": "tire",
+                "phonetic": "/taɪə/"
+            },
+            "word2": {
+                "text": "tar",
+                "phonetic": "/tɑː/"
+            },
+            "focusPhoneme": {
+                "first": "/aɪə/",
+                "second": "/ɑː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-69",
+            "word1": {
+                "text": "flower",
+                "phonetic": "/ˈflaʊə/"
+            },
+            "word2": {
+                "text": "flour",
+                "phonetic": "/ˈflaʊə/"
+            },
+            "focusPhoneme": {
+                "first": "/aʊə/",
+                "second": "/aʊə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-70",
+            "word1": {
+                "text": "layer",
+                "phonetic": "/ˈleɪə/"
+            },
+            "word2": {
+                "text": "lawyer",
+                "phonetic": "/ˈlɔɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/eɪə/",
+                "second": "/ɔɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-71",
+            "word1": {
+                "text": "hire",
+                "phonetic": "/haɪə/"
+            },
+            "word2": {
+                "text": "higher",
+                "phonetic": "/ˈhaɪə/"
+            },
+            "focusPhoneme": {
+                "first": "/aɪə/",
+                "second": "/aɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-72",
+            "word1": {
+                "text": "power",
+                "phonetic": "/ˈpaʊə/"
+            },
+            "word2": {
+                "text": "paw",
+                "phonetic": "/pɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/aʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-73",
+            "word1": {
+                "text": "tower",
+                "phonetic": "/ˈtaʊə/"
+            },
+            "word2": {
+                "text": "tore",
+                "phonetic": "/tɔː/"
+            },
+            "focusPhoneme": {
+                "first": "/aʊə/",
+                "second": "/ɔː/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-74",
+            "word1": {
+                "text": "player",
+                "phonetic": "/ˈpleɪə/"
+            },
+            "word2": {
+                "text": "pliers",
+                "phonetic": "/ˈplaɪəz/"
+            },
+            "focusPhoneme": {
+                "first": "/eɪə/",
+                "second": "/aɪə/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-75",
+            "word1": {
+                "text": "royal",
+                "phonetic": "/ˈrɔɪəl/"
+            },
+            "word2": {
+                "text": "rile",
+                "phonetic": "/raɪl/"
+            },
+            "focusPhoneme": {
+                "first": "/ɔɪə/",
+                "second": "/aɪ/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "vowels"
+        },
+        {
+            "id": "pair-76",
+            "word1": {
+                "text": "pat",
+                "phonetic": "/pæt/"
+            },
+            "word2": {
+                "text": "bat",
+                "phonetic": "/bæt/"
+            },
+            "focusPhoneme": {
+                "first": "/p/",
+                "second": "/b/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-77",
+            "word1": {
+                "text": "ten",
+                "phonetic": "/ten/"
+            },
+            "word2": {
+                "text": "den",
+                "phonetic": "/den/"
+            },
+            "focusPhoneme": {
+                "first": "/t/",
+                "second": "/d/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-78",
+            "word1": {
+                "text": "cat",
+                "phonetic": "/kæt/"
+            },
+            "word2": {
+                "text": "gat",
+                "phonetic": "/ɡæt/"
+            },
+            "focusPhoneme": {
+                "first": "/k/",
+                "second": "/ɡ/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-79",
+            "word1": {
+                "text": "fan",
+                "phonetic": "/fæn/"
+            },
+            "word2": {
+                "text": "van",
+                "phonetic": "/væn/"
+            },
+            "focusPhoneme": {
+                "first": "/f/",
+                "second": "/v/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-80",
+            "word1": {
+                "text": "sip",
+                "phonetic": "/sɪp/"
+            },
+            "word2": {
+                "text": "zip",
+                "phonetic": "/zɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/s/",
+                "second": "/z/",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-81",
+            "word1": {
+                "text": "chip",
+                "phonetic": "/tʃɪp/"
+            },
+            "word2": {
+                "text": "ship",
+                "phonetic": "/ʃɪp/"
+            },
+            "focusPhoneme": {
+                "first": "/tʃ/",
+                "second": "/ʃ/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-82",
+            "word1": {
+                "text": "joke",
+                "phonetic": "/dʒəʊk/"
+            },
+            "word2": {
+                "text": "yoke",
+                "phonetic": "/jəʊk/"
+            },
+            "focusPhoneme": {
+                "first": "/dʒ/",
+                "second": "/j/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-83",
+            "word1": {
+                "text": "light",
+                "phonetic": "/laɪt/"
+            },
+            "word2": {
+                "text": "right",
+                "phonetic": "/raɪt/"
+            },
+            "focusPhoneme": {
+                "first": "/l/",
+                "second": "/r/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-84",
+            "word1": {
+                "text": "mouth",
+                "phonetic": "/maʊθ/"
+            },
+            "word2": {
+                "text": "mouse",
+                "phonetic": "/maʊs/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/s/",
+                "position": "final"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-85",
+            "word1": {
+                "text": "think",
+                "phonetic": "/θɪŋk/"
+            },
+            "word2": {
+                "text": "sink",
+                "phonetic": "/sɪŋk/"
+            },
+            "focusPhoneme": {
+                "first": "/θ/",
+                "second": "/s/",
+                "position": "initial"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-86",
+            "word1": {
+                "text": "this",
+                "phonetic": "/ðɪs/"
+            },
+            "word2": {
+                "text": "dis",
+                "phonetic": "/dɪs/"
+            },
+            "focusPhoneme": {
+                "first": "/ð/",
+                "second": "/d/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-87",
+            "word1": {
+                "text": "cheap",
+                "phonetic": "/tʃiːp/"
+            },
+            "word2": {
+                "text": "sheep",
+                "phonetic": "/ʃiːp/"
+            },
+            "focusPhoneme": {
+                "first": "/tʃ/",
+                "second": "/ʃ/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-88",
+            "word1": {
+                "text": "jest",
+                "phonetic": "/dʒest/"
+            },
+            "word2": {
+                "text": "yes",
+                "phonetic": "/jes/"
+            },
+            "focusPhoneme": {
+                "first": "/dʒ/",
+                "second": "/j/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-89",
+            "word1": {
+                "text": "sing",
+                "phonetic": "/sɪŋ/"
+            },
+            "word2": {
+                "text": "sin",
+                "phonetic": "/sɪn/"
+            },
+            "focusPhoneme": {
+                "first": "/ŋ/",
+                "second": "/n/",
+                "position": "final"
+            },
+            "difficulty": "intermediate",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-90",
+            "word1": {
+                "text": "finger",
+                "phonetic": "/ˈfɪŋɡə/"
+            },
+            "word2": {
+                "text": "singer",
+                "phonetic": "/ˈsɪŋə/"
+            },
+            "focusPhoneme": {
+                "first": "/ŋɡ/",
+                "second": "/ŋ/",
+                "position": "medial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-91",
+            "word1": {
+                "text": "hat",
+                "phonetic": "/hæt/"
+            },
+            "word2": {
+                "text": "at",
+                "phonetic": "/æt/"
+            },
+            "focusPhoneme": {
+                "first": "/h/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "beginner",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-92",
+            "word1": {
+                "text": "whale",
+                "phonetic": "/weɪl/"
+            },
+            "word2": {
+                "text": "wail",
+                "phonetic": "/weɪl/"
+            },
+            "focusPhoneme": {
+                "first": "/hw/",
+                "second": "/w/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-93",
+            "word1": {
+                "text": "knight",
+                "phonetic": "/naɪt/"
+            },
+            "word2": {
+                "text": "night",
+                "phonetic": "/naɪt/"
+            },
+            "focusPhoneme": {
+                "first": "/k/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-94",
+            "word1": {
+                "text": "write",
+                "phonetic": "/raɪt/"
+            },
+            "word2": {
+                "text": "right",
+                "phonetic": "/raɪt/"
+            },
+            "focusPhoneme": {
+                "first": "/w/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-95",
+            "word1": {
+                "text": "knot",
+                "phonetic": "/nɒt/"
+            },
+            "word2": {
+                "text": "not",
+                "phonetic": "/nɒt/"
+            },
+            "focusPhoneme": {
+                "first": "/k/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-96",
+            "word1": {
+                "text": "gnat",
+                "phonetic": "/næt/"
+            },
+            "word2": {
+                "text": "nat",
+                "phonetic": "/næt/"
+            },
+            "focusPhoneme": {
+                "first": "/ɡ/",
+                "second": "",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-97",
+            "word1": {
+                "text": "psychology",
+                "phonetic": "/saɪˈkɒlədʒi/"
+            },
+            "word2": {
+                "text": "sigh",
+                "phonetic": "/saɪ/"
+            },
+            "focusPhoneme": {
+                "first": "/ps/",
+                "second": "/s/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-98",
+            "word1": {
+                "text": "xylophone",
+                "phonetic": "/ˈzaɪləfəʊn/"
+            },
+            "word2": {
+                "text": "zoo",
+                "phonetic": "/zuː/"
+            },
+            "focusPhoneme": {
+                "first": "/ks/",
+                "second": "/z/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-99",
+            "word1": {
+                "text": "queue",
+                "phonetic": "/kjuː/"
+            },
+            "word2": {
+                "text": "cue",
+                "phonetic": "/kjuː/"
+            },
+            "focusPhoneme": {
+                "first": "/k/",
+                "second": "/k/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        },
+        {
+            "id": "pair-100",
+            "word1": {
+                "text": "tsar",
+                "phonetic": "/zɑː/"
+            },
+            "word2": {
+                "text": "zar",
+                "phonetic": "/zɑː/"
+            },
+            "focusPhoneme": {
+                "first": "/ts/",
+                "second": "/z/",
+                "position": "initial"
+            },
+            "difficulty": "advanced",
+            "category": "consonants"
+        }
+    ]
+}

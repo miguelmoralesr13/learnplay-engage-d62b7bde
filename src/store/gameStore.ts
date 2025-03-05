@@ -1,6 +1,13 @@
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { DifficultyLevel, GameStatus, GameParameters } from '@/types/game';
+import { gameMetadata as paintDrawingGameMetadata } from '@/games/PaintDrawingGame/metadata';
+import { gameMetadata as minimalPairsMetadata } from '@/games/MinimalPairs/metadata';
+import { gameMetadata as wordRushMetadata } from '@/games/WordRush/metadata';
+import { gameMetadata as sentenceBuilderMetadata } from '@/games/SentenceBuilder/metadata';
+import { gameMetadata as verbFormsMetadata } from '@/games/VerbForms/metadata';
+import { gameMetadata as wordMatchMetadata } from '@/games/WordMatch/metadata';
+import { gameMetadata as tongueTwistersMetadata } from '@/games/TongueTwisters/metadata';
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export type GameCategory = 'vocabulary' | 'grammar' | 'listening' | 'reading' | 'speaking';
@@ -9,7 +16,7 @@ export interface Game {
   id: string;
   name: string;
   description: string;
-  category: GameCategory;
+  category: string;
   difficulty: Difficulty[];
   thumbnail: string;
   path: string;
@@ -29,7 +36,12 @@ export interface UserProgress {
   completedGames: Record<string, GameStats>;
 }
 
-interface GameState {
+interface GameSettings {
+  difficulty: DifficultyLevel;
+  timerEnabled: boolean;
+}
+
+interface GameStoreState {
   games: Game[];
   currentGame: Game | null;
   activeFilters: {
@@ -37,58 +49,28 @@ interface GameState {
     difficulty: Difficulty | null;
   };
   userProgress: UserProgress;
-  gameSettings: {
-    difficulty: Difficulty;
-    timerEnabled: boolean;
-    soundEnabled: boolean;
-  };
+  gameSettings: GameSettings;
+  gameStatus: GameStatus;
   setCurrentGame: (game: Game | null) => void;
   setFilters: (filters: Partial<{ category: GameCategory | null; difficulty: Difficulty | null }>) => void;
   resetFilters: () => void;
-  updateGameSettings: (settings: Partial<GameState['gameSettings']>) => void;
+  updateSettings: (settings: Partial<GameSettings>) => void;
   updateUserProgress: (gameId: string, score: number) => void;
+  resetGameState: () => void;
+  registerGame: (game: Game) => void;
 }
 
-const useGameStore = create<GameState>()(
+const useGameStore = create<GameStoreState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       games: [
-        {
-          id: 'word-match',
-          name: 'Word Match',
-          description: 'Match English words with their meanings',
-          category: 'vocabulary',
-          difficulty: ['beginner', 'intermediate', 'advanced'],
-          thumbnail: '/lovable-uploads/b871120f-9f5f-4e93-b53a-648caaf93c3b.png',
-          path: '/games/word-match'
-        },
-        {
-          id: 'sentence-builder',
-          name: 'Sentence Builder',
-          description: 'Form correct sentences by arranging words',
-          category: 'grammar',
-          difficulty: ['beginner', 'intermediate', 'advanced'],
-          thumbnail: '/lovable-uploads/b871120f-9f5f-4e93-b53a-648caaf93c3b.png',
-          path: '/games/sentence-builder'
-        },
-        {
-          id: 'word-search',
-          name: 'Word Search',
-          description: 'Find hidden English words in a grid',
-          category: 'vocabulary',
-          difficulty: ['beginner', 'intermediate', 'advanced'],
-          thumbnail: '/lovable-uploads/b871120f-9f5f-4e93-b53a-648caaf93c3b.png',
-          path: '/games/word-search'
-        },
-        {
-          id: 'listening-quiz',
-          name: 'Listening Quiz',
-          description: 'Test your listening skills with audio questions',
-          category: 'listening',
-          difficulty: ['intermediate', 'advanced'],
-          thumbnail: '/lovable-uploads/b871120f-9f5f-4e93-b53a-648caaf93c3b.png',
-          path: '/games/listening-quiz'
-        }
+        wordMatchMetadata,
+        verbFormsMetadata,
+        sentenceBuilderMetadata,
+        wordRushMetadata,
+        paintDrawingGameMetadata,
+        minimalPairsMetadata,
+        tongueTwistersMetadata,
       ],
       currentGame: null,
       activeFilters: {
@@ -104,8 +86,8 @@ const useGameStore = create<GameState>()(
       gameSettings: {
         difficulty: 'beginner',
         timerEnabled: true,
-        soundEnabled: true,
       },
+      gameStatus: 'idle',
       setCurrentGame: (game) => set({ currentGame: game }),
       setFilters: (filters) => set((state) => ({
         activeFilters: {
@@ -119,7 +101,7 @@ const useGameStore = create<GameState>()(
           difficulty: null,
         },
       }),
-      updateGameSettings: (settings) => set((state) => ({
+      updateSettings: (settings) => set((state) => ({
         gameSettings: {
           ...state.gameSettings,
           ...settings,
@@ -138,11 +120,11 @@ const useGameStore = create<GameState>()(
         const baseXP = score * 5;
         const levelMultiplier = 1 + (state.userProgress.level * 0.1);
         const experienceGained = Math.round(baseXP * levelMultiplier);
-        
+
         let newExperience = state.userProgress.experience + experienceGained;
         let newLevel = state.userProgress.level;
         let newNextLevelExperience = state.userProgress.nextLevelExperience;
-        
+
         // Level up if enough experience is gained
         while (newExperience >= newNextLevelExperience) {
           newExperience -= newNextLevelExperience;
@@ -167,10 +149,16 @@ const useGameStore = create<GameState>()(
           },
         };
       }),
+      resetGameState: () => set({
+        gameStatus: 'idle'
+      }),
+      registerGame: (game) => set((state) => ({
+        games: [...state.games, game]
+      })),
     }),
     {
       name: 'english-games-storage',
-      partialize: (state) => ({ 
+      partialize: (state) => ({
         userProgress: state.userProgress,
         gameSettings: state.gameSettings,
       }),
@@ -179,3 +167,4 @@ const useGameStore = create<GameState>()(
 );
 
 export default useGameStore;
+export type { DifficultyLevel };

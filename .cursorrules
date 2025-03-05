@@ -1,0 +1,74 @@
+# .cursorrules
+
+# Reglas para el desarrollo de juegos en el proyecto
+
+## Principios SOLID
+1. **Single Responsibility Principle (SRP)**:
+   - Cada componente o módulo debe tener una única responsabilidad.
+   - Ejemplo: El componente `GameWrapper` solo debe manejar el ciclo de vida del juego, no la lógica específica del juego.
+
+2. **Open/Closed Principle (OCP)**:
+   - Los componentes deben estar abiertos para extensión pero cerrados para modificación.
+   - Ejemplo: Para agregar un nuevo tipo de juego, extiende la interfaz `IGame` en lugar de modificar el código existente.
+
+3. **Liskov Substitution Principle (LSP)**:
+   - Las clases derivadas deben ser sustituibles por sus clases base sin alterar el comportamiento del programa.
+   - Ejemplo: Todos los juegos que implementan `IGame` deben poder ser usados en cualquier lugar donde se espere un objeto de tipo `IGame`.
+
+4. **Interface Segregation Principle (ISP)**:
+   - Las interfaces deben ser específicas para cada cliente, evitando interfaces demasiado grandes.
+   - Ejemplo: Si un juego no necesita funcionalidades de audio, no debe implementar métodos relacionados con audio.
+
+5. **Dependency Inversion Principle (DIP)**:
+   - Los módulos de alto nivel no deben depender de módulos de bajo nivel, ambos deben depender de abstracciones.
+   - Ejemplo: El `GameStore` debe depender de la interfaz `IGame` en lugar de implementaciones concretas de juegos.
+
+## Buenas Prácticas
+
+### Estructura de Archivos
+- **Organización**: Sigue la estructura de directorios definida en `src/games/[GameName]/`.
+- **Nombres de Archivos**: Usa nombres descriptivos y consistentes (e.g., `index.tsx`, `config.ts`, `types.ts`).
+
+### Componentes
+- **Reutilización**: Usa componentes base como `GameWrapper`, `ParametersForm`, y `InstructionsPanel` para evitar duplicación de código.
+- **Props**: Define claramente las props de los componentes usando TypeScript para mejorar la seguridad y legibilidad del código.
+
+### Estado
+- **Gestión de Estado**: Usa Zustand para manejar el estado global del juego. Evita el uso excesivo de estado local en componentes.
+- **Acciones**: Define acciones claras y específicas en el store para modificar el estado.
+
+### Testing
+- **Pruebas Unitarias**: Escribe pruebas unitarias para cada componente y hook.
+- **Pruebas de Integración**: Asegúrate de que los componentes funcionen correctamente juntos.
+
+### Documentación
+- **Comentarios**: Documenta el código con comentarios claros y concisos.
+- **README**: Incluye un archivo `README.md` en cada directorio de juego que explique su funcionalidad y cómo usarlo.
+
+### Rendimiento
+- **Lazy Loading**: Usa lazy loading para cargar componentes y recursos solo cuando sean necesarios.
+- **Optimización**: Optimiza el rendimiento evitando renders innecesarios y usando memoización cuando sea apropiado.
+
+### Accesibilidad
+- **Accesibilidad**: Asegúrate de que todos los componentes sean accesibles, incluyendo soporte para teclado y lectores de pantalla.
+- **Temas**: Usa `next-themes` para soportar temas claros y oscuros.
+
+## Creación de un Nuevo Juego
+
+### Pasos para Agregar un Nuevo Juego
+1. **Crear un Nuevo Directorio**:
+   - Crea un nuevo directorio bajo `src/games/[GameName]/`.
+
+2. **Implementar la Interfaz `IGame`**:
+   - Implementa la interfaz `IGame` en el nuevo juego.
+
+3. **Crear Componentes Específicos**:
+   - Crea componentes específicos para el juego en el directorio `components/`.
+
+4. **Registrar el Juego**:
+   - Registra el juego en el store usando el archivo `metadata.ts` y el hook `useGameRegistry`.
+
+5. **Agregar Rutas**:
+   - Agrega una ruta para el nuevo juego en `App.tsx`.
+
+### Ejemplo de Estructura de Directorio
