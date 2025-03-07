@@ -76,7 +76,7 @@ export const useMinimalPairsGame = (
 
         // Filtrar por dificultad
         filteredPairs = filteredPairs.filter(pair =>
-            pair.difficulty === parameters.difficulty
+            pair.difficulty === parameters.difficulty.value
         );
         console.log(`Filtered pairs by difficulty ${parameters.difficulty}: ${filteredPairs.length} pairs`);
 
@@ -317,6 +317,25 @@ export const useMinimalPairsGame = (
         if (!gameState.pairs.length) return 0;
         return Math.round((gameState.currentPairIndex / gameState.pairs.length) * 100);
     }, [gameState.currentPairIndex, gameState.pairs.length]);
+
+    // Añadir una función para reproducir palabras con un intervalo
+    const playWordsWithDelay = useCallback((word1: string, word2: string, delay = 1000) => {
+        tts.speak(word1);
+
+        // Programar la reproducción de la segunda palabra después del retraso
+        setTimeout(() => {
+            tts.speak(word2);
+        }, delay);
+    }, [tts]);
+
+    // Modificar la función que compara palabras
+    const compareWords = useCallback((word1: string, word2: string) => {
+        // Usar la nueva función en lugar de llamar a speak dos veces seguidas
+        playWordsWithDelay(word1, word2);
+
+        // Resto de la lógica de comparación
+        // ...
+    }, [playWordsWithDelay]);
 
     return {
         gameState,

@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { NumberRaceDifficulty, NumberRaceState, NumberRaceParameters } from '../types';
+import { NumberRaceState, NumberRaceParameters } from '../types';
 import { NUMBER_RANGES, BASE_RUNNER_SPEED, TIME_LIMITS } from '../config';
 import { checkAnswer, numberToWords } from '../utils/numberToWords';
-import { calculateScore, calculateTimeBonus } from '../utils/scoreCalculator';
+import { calculateTimeBonus } from '../utils/scoreCalculator';
 import { generateHint } from '../utils/hintGenerator';
 
 export function useNumberRace(params: NumberRaceParameters) {
@@ -29,8 +29,8 @@ export function useNumberRace(params: NumberRaceParameters) {
     // Generar un nuevo número aleatorio basado en la configuración
     const generateRandomNumber = useCallback(() => {
         // Usar el máximo seleccionado por el usuario en lugar del rango predefinido
-        const { min } = NUMBER_RANGES[params.difficulty];
-        const max = params.maxNumber || NUMBER_RANGES[params.difficulty].max;
+        const { min } = NUMBER_RANGES[params.difficulty.value];
+        const max = params.maxNumber || NUMBER_RANGES[params.difficulty.value].max;
 
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }, [params.difficulty, params.maxNumber]);
@@ -59,7 +59,6 @@ export function useNumberRace(params: NumberRaceParameters) {
         timerRef.current = window.setInterval(() => {
             setState(prev => {
                 const newTimeRemaining = prev.timeRemaining - 1;
-
                 // Si se acaba el tiempo, terminar el juego
                 if (newTimeRemaining <= 0) {
                     if (timerRef.current) {

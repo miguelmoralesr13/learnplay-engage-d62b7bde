@@ -32,7 +32,6 @@ const FALLBACK_OBJECT: DrawingObject = {
 };
 
 export const usePaintDrawingGame = (
-    difficulty: DifficultyLevel,
     parameters: PaintDrawingParameters
 ) => {
     // Estado del juego
@@ -60,11 +59,7 @@ export const usePaintDrawingGame = (
 
     // Iniciar el juego
     const startGame = useCallback((providedColors?: ColorItem[]) => {
-        console.log("DEBUG - startGame llamado", {
-            providedColorsExist: !!providedColors,
-            providedColorsCount: providedColors?.length || 0,
-            providedColorNames: providedColors?.map(c => c.name) || []
-        });
+        console.log("DEBUG - startGame llamado con parámetros actualizados:", parameters);
 
         // If colors are provided, use them
         const colors = providedColors || getColorsByLevel(parameters.colorLevel || 'basic');
@@ -81,7 +76,7 @@ export const usePaintDrawingGame = (
 
         // Obtener objetos según la dificultad y el nivel de color
         let gameObjects = getObjectsByDifficulty(
-            difficulty,
+            parameters.difficulty.value,
             totalObjectsNeeded, // Ahora pedimos la cantidad total
             parameters.colorLevel || 'basic'
         );
@@ -162,6 +157,32 @@ export const usePaintDrawingGame = (
             console.error("DEBUG - ⚠️ No todos los objetos pueden completarse con los colores disponibles");
         }
 
+        // Agregar verificación específica para evitar objetos duplicados
+        const uniqueObjectIds = new Set<string>();
+        const uniqueObjects: DrawingObject[] = [];
+
+        for (const object of gameObjects) {
+            if (!uniqueObjectIds.has(object.id)) {
+                uniqueObjectIds.add(object.id);
+                uniqueObjects.push(object);
+
+                if (uniqueObjects.length >= totalObjectsNeeded) {
+                    break;
+                }
+            }
+        }
+
+        // Usar los objetos únicos
+        gameObjects = uniqueObjects.length >= totalObjectsNeeded
+            ? uniqueObjects
+            : [...gameObjects]; // Asegurar que creamos una copia
+
+        console.log("Objetos finales (garantizados únicos):", {
+            count: gameObjects.length,
+            names: gameObjects.map(o => o.name),
+            ids: gameObjects.map(o => o.id)
+        });
+
         // Inicializar estado
         setGameState(state => ({
             ...state,
@@ -185,7 +206,7 @@ export const usePaintDrawingGame = (
                 completionRate: 0
             }
         }));
-    }, [difficulty, parameters]);
+    }, [parameters]);
 
     // Pasar de la fase de aprendizaje a la de dibujo
     const startDrawingPhase = useCallback(() => {
@@ -412,6 +433,22 @@ export const usePaintDrawingGame = (
             clearTimeout(fullGameTimer);
         };
     }, [gameState.gameStatus, parameters.timerEnabled, parameters.timeLimit, endGame]);
+
+    // 1. Añadir un useEffect para actualizar cuando cambian los parámetros
+    useEffect(() => {
+        // Solo actualizar si ya hemos iniciado el juego
+        if (gameState.gameStatus !== 'idle' && gameState.colors.length > 0) {
+            console.log('Actualizando parámetros del juego:', parameters);
+
+            // No reiniciar completamente, solo actualizar los parámetros
+            // que podrían afectar el juego en curso
+            setGameState(prev => ({
+                ...prev,
+                // Actualizar cualquier estado que dependa de los parámetros
+                // pero mantener el progreso actual
+            }));
+        }
+    }, [parameters]); // Dependencia en parameters para que se ejecute cuando cambien
 
     return {
         gameState,

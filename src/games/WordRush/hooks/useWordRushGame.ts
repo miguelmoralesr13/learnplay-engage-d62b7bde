@@ -69,29 +69,22 @@ export const useWordRushGame = (
 
     // Efecto para el temporizador
     useEffect(() => {
-        if (gameState.gameStatus !== 'playing' || gameState.timeLeft <= 0) return;
+        if (!parameters.timerEnabled) return;
 
-        const timer = setInterval(() => {
-            setGameState(prev => {
-                if (prev.timeLeft <= 1) {
-                    clearInterval(timer);
-                    // Si se acaba el tiempo, terminar el juego
-                    return {
-                        ...prev,
-                        timeLeft: 0,
-                        gameStatus: 'completed'
-                    };
-                }
-
-                return {
+        let timer: NodeJS.Timeout | null = null;
+        if (gameState.gameStatus === 'playing' && gameState.timeLeft > 0) {
+            timer = setInterval(() => {
+                setGameState(prev => ({
                     ...prev,
                     timeLeft: prev.timeLeft - 1
-                };
-            });
-        }, 1000);
+                }));
+            }, 1000);
+        }
 
-        return () => clearInterval(timer);
-    }, [gameState.gameStatus, gameState.timeLeft]);
+        return () => {
+            if (timer) clearInterval(timer);
+        };
+    }, [gameState.gameStatus, gameState.timeLeft, parameters.timerEnabled]);
 
     // Verificar respuesta seleccionada
     const checkAnswer = useCallback((selectedOption: string) => {

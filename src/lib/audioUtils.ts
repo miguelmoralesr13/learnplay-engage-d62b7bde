@@ -1,4 +1,3 @@
-
 /**
  * Audio utilities for handling audio processing and visualization
  */
@@ -8,48 +7,44 @@ let audioContext: AudioContext | null = null;
 
 // Get or create audio context
 export const getAudioContext = (): AudioContext => {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+  // Check for AudioContext or webkitAudioContext
+  const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+
+  if (!AudioContextClass) {
+    console.error('AudioContext is not supported in this browser');
+    throw new Error('AudioContext not supported');
   }
-  return audioContext;
+
+  return new AudioContextClass();
 };
 
 // Create analyzer node for visualizing audio
-export const createAnalyzer = (): AnalyserNode => {
-  const context = getAudioContext();
-  const analyzer = context.createAnalyser();
+export const createAnalyzer = (audioContext = getAudioContext()): AnalyserNode => {
+  const analyzer = audioContext.createAnalyser();
   analyzer.fftSize = 256;
-  analyzer.smoothingTimeConstant = 0.7;
+  analyzer.smoothingTimeConstant = 0.8;
   return analyzer;
 };
 
 // Calculate audio levels from analyzer for visualization
-export const getAudioLevels = (
-  analyzer: AnalyserNode,
-  barCount: number = 20
-): number[] => {
+export const getAudioLevels = (analyzer: AnalyserNode, bins = 20): number[] => {
   const dataArray = new Uint8Array(analyzer.frequencyBinCount);
   analyzer.getByteFrequencyData(dataArray);
-  
-  // Convert frequency data to visual bar heights
+
+  // Create averaged bins of data
+  const binSize = Math.floor(dataArray.length / bins);
   const levels: number[] = [];
-  const step = Math.floor(dataArray.length / barCount);
-  
-  for (let i = 0; i < barCount; i++) {
-    const start = i * step;
+
+  for (let i = 0; i < bins; i++) {
     let sum = 0;
-    
-    // Average values for smoother visualization
-    for (let j = 0; j < step && start + j < dataArray.length; j++) {
-      sum += dataArray[start + j];
+    for (let j = 0; j < binSize; j++) {
+      sum += dataArray[i * binSize + j];
     }
-    
-    // Normalize to 0-100 range
-    const average = sum / step;
-    const normalizedValue = Math.min(100, Math.max(0, average));
-    levels.push(normalizedValue);
+    // Normalize to 0-1 range
+    const average = sum / binSize / 255;
+    levels.push(average);
   }
-  
+
   return levels;
 };
 
@@ -65,21 +60,21 @@ export const resumeAudioContext = async (): Promise<void> => {
 export const calculateStringSimilarity = (str1: string, str2: string): number => {
   const s1 = str1.toLowerCase().trim();
   const s2 = str2.toLowerCase().trim();
-  
+
   if (s1 === s2) return 100;
   if (s1.length === 0 || s2.length === 0) return 0;
-  
+
   // Simple Levenshtein distance calculation
   const matrix: number[][] = [];
-  
+
   for (let i = 0; i <= s1.length; i++) {
     matrix[i] = [i];
   }
-  
+
   for (let j = 0; j <= s2.length; j++) {
     matrix[0][j] = j;
   }
-  
+
   for (let i = 1; i <= s1.length; i++) {
     for (let j = 1; j <= s2.length; j++) {
       const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
@@ -90,10 +85,10 @@ export const calculateStringSimilarity = (str1: string, str2: string): number =>
       );
     }
   }
-  
+
   const distance = matrix[s1.length][s2.length];
   const maxLength = Math.max(s1.length, s2.length);
-  
+
   // Convert to similarity percentage
   return Math.round((1 - distance / maxLength) * 100);
 };

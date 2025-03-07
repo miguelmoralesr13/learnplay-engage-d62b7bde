@@ -1,59 +1,43 @@
-import { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface InstructionsPanelProps {
     instructions: string[];
     onComplete: () => void;
+    children?: React.ReactNode;
 }
 
-const InstructionsPanel = ({ instructions, onComplete }: InstructionsPanelProps) => {
-    const [currentStep, setCurrentStep] = useState(0);
-
-    const handleNext = () => {
-        if (currentStep < instructions.length - 1) {
-            setCurrentStep(currentStep + 1);
-        } else {
-            onComplete();
-        }
-    };
-
+const InstructionsPanel: React.FC<InstructionsPanelProps> = ({
+    instructions,
+    onComplete,
+    children
+}) => {
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="glass-card rounded-2xl p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="w-full max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md"
         >
-            <h2 className="text-2xl font-bold mb-6">Instrucciones</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Instrucciones</h2>
 
-            <div className="min-h-[200px] flex items-center justify-center mb-8">
-                <motion.p
-                    key={currentStep}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-lg text-center"
-                >
-                    {instructions[currentStep]}
-                </motion.p>
-            </div>
+            <ul className="space-y-3 mb-6">
+                {instructions.map((instruction, index) => (
+                    <li key={index} className="flex items-start">
+                        <span className="inline-block w-2 h-2 mt-2 mr-3 bg-primary rounded-full"></span>
+                        <span className="text-gray-700">{instruction}</span>
+                    </li>
+                ))}
+            </ul>
 
-            <div className="flex justify-between items-center">
-                <div className="flex gap-2">
-                    {instructions.map((_, index) => (
-                        <div
-                            key={index}
-                            className={`w-2 h-2 rounded-full ${index === currentStep ? 'bg-purple' : 'bg-gray-300'
-                                }`}
-                        />
-                    ))}
-                </div>
+            {children}
 
+            <div className="mt-6 text-center">
                 <button
-                    className="px-6 py-2 rounded-lg bg-purple text-white hover:bg-purple/90"
-                    onClick={handleNext}
+                    onClick={onComplete}
+                    className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-8 rounded-lg transition-colors"
                 >
-                    {currentStep < instructions.length - 1 ? 'Siguiente' : 'Comenzar'}
+                    Siguiente
                 </button>
             </div>
         </motion.div>

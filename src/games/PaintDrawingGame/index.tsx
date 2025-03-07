@@ -15,13 +15,13 @@ import { usePaintDrawingGame } from './hooks/usePaintDrawingGame';
 import { gameMetadata } from './metadata';
 import ColorPalette from './components/ColorPalette';
 import { getColorsByLevel } from './utils/colorData';
+import { RefreshCw } from 'lucide-react';
 
 type GameStage = 'parameters' | 'instructions' | 'playing' | 'feedback';
 
 const PaintDrawingGame: React.FC = () => {
     // Estado para el flujo del juego
     const [gameStage, setGameStage] = useState<GameStage>('parameters');
-    const [difficulty, setDifficulty] = useState<DifficultyLevel>(PaintDrawingGameConfig.difficulty);
     const [parameters, setParameters] = useState<PaintDrawingParameters>(
         PaintDrawingGameConfig.parameters as PaintDrawingParameters
     );
@@ -37,15 +37,15 @@ const PaintDrawingGame: React.FC = () => {
         checkDrawing,
         nextObject,
         endGame
-    } = usePaintDrawingGame(difficulty, parameters);
+    } = usePaintDrawingGame(parameters);
 
     // Manejador para el envío del formulario dinámico
-    const handleFormSubmit = (difficultyValue: DifficultyLevel, formValues: any) => {
+    const handleFormSubmit = (formValues: PaintDrawingParameters) => {
         // Mapear colorPalette a colorLevel
         let colorLevel: ColorLevel = 'basic';
-        if (formValues.colorPalette === 'intermediate') {
+        if (formValues.colorLevel === 'intermediate') {
             colorLevel = 'intermediate';
-        } else if (formValues.colorPalette === 'advanced') {
+        } else if (formValues.colorLevel === 'advanced') {
             colorLevel = 'advanced';
         }
 
@@ -58,28 +58,30 @@ const PaintDrawingGame: React.FC = () => {
             showColorNames: formValues.showColorNames !== undefined ? formValues.showColorNames : true,
             enableAudio: formValues.enableAudio !== undefined ? formValues.enableAudio : false,
             objectsPerRound: formValues.objectsPerRound || 1,
-            timeLimit: formValues.timeLimit || 0
+            timeLimit: formValues.timeLimit || 0,
+            difficulty: formValues.difficulty || { label: 'Dificultad', value: 'beginner' }
         };
 
         console.log("DEBUG - Parámetros configurados:", {
             original: formValues,
             processed: newParams,
-            colorPalette: formValues.colorPalette,
+            colorLevel: formValues.colorLevel,
             mappedToLevel: colorLevel
         });
 
-        setDifficulty(difficultyValue);
         setParameters(newParams);
         setGameStage('instructions');
     };
 
     // Manejadores para las transiciones entre etapas
     const handleInstructionsComplete = () => {
+        console.log("Parámetros al iniciar juego:", parameters);
         startLearningWithCorrectColors();
         setGameStage('playing');
     };
 
     const handleGameComplete = () => {
+        endGame();
         setGameStage('feedback');
     };
 
@@ -156,6 +158,13 @@ const PaintDrawingGame: React.FC = () => {
         startGame(limitedColors);
     }, [parameters.colorLevel, startGame]);
 
+    // Añadir un useEffect para detectar cuando el juego está completado automáticamente
+    useEffect(() => {
+        if (gameState.gameStatus === 'completed' && gameStage === 'playing') {
+            setGameStage('feedback');
+        }
+    }, [gameState.gameStatus, gameStage]);
+
     // Renderizado principal
     return (
         <GameWrapper
@@ -178,7 +187,7 @@ const PaintDrawingGame: React.FC = () => {
                         </div>
 
                         <ParametersForm
-                            gameConfig={PaintDrawingGameConfig}
+                            gameConfig={{ ...PaintDrawingGameConfig, parameters }}
                             onSubmit={handleFormSubmit}
                         />
                     </motion.div>
@@ -210,7 +219,7 @@ const PaintDrawingGame: React.FC = () => {
                     >
                         {!gameState.gameStatus || !gameState.colors || gameState.colors.length === 0 ? (
                             <div className="text-center py-10">
-                                <p className="text-xl">Cargando juego...</p>
+                                <p className="text-xl">Loading game... (Cargando juego...)</p>
                             </div>
                         ) : (
                             <>
@@ -261,7 +270,7 @@ const PaintDrawingGame: React.FC = () => {
                                                         }}
                                                         className="py-2 px-6 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400"
                                                     >
-                                                        Saltar objeto
+                                                        Skip object (Saltar objeto)
                                                     </button>
                                                 )}
                                                 <button
@@ -269,7 +278,7 @@ const PaintDrawingGame: React.FC = () => {
                                                     className="py-2 px-6 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
                                                     disabled={!gameState.selectedColor}
                                                 >
-                                                    Comprobar
+                                                    Check (Comprobar)
                                                 </button>
                                             </div>
                                         </div>
@@ -287,32 +296,24 @@ const PaintDrawingGame: React.FC = () => {
                                     />
                                 )}
 
-                                {gameState.gameStatus === 'completed' && (
-                                    <FeedbackDisplay
-                                        gameId={gameMetadata.id}
-                                        score={gameState.score}
-                                        maxScore={maxScore}
-                                        metrics={{
-                                            correct: gameState.metrics.correctColorUses,
-                                            incorrect: gameState.metrics.totalColorUses - gameState.metrics.correctColorUses,
-                                            timeSpent: gameState.metrics.timeSpent
-                                        }}
-                                        customMetrics={[
-                                            {
-                                                label: 'Tiempo de juego',
-                                                value: `${Math.round(gameState.metrics.timeSpent / 60)} min ${Math.round(gameState.metrics.timeSpent % 60)} seg`
-                                            },
-                                            {
-                                                label: 'Precisión de colores',
-                                                value: `${Math.round((gameState.metrics.correctColorUses / Math.max(1, gameState.metrics.totalColorUses)) * 100)}%`
-                                            },
-                                            {
-                                                label: 'Dibujos completados',
-                                                value: `${gameState.completedObjects.length} / ${gameState.objects.length}`
-                                            }
-                                        ]}
-                                        onPlayAgain={handlePlayAgain}
-                                    />
+
+
+                                {gameState.gameStatus !== 'completed' && (
+                                    <div className="mt-8 border-t pt-4 flex justify-between items-center">
+                                        <div className="flex items-center gap-4">
+                                            <div className="text-sm text-green-600">
+                                                Completed: {gameState.completedObjects?.length || 0}/{gameState.objects?.length || 0} (Completados)
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                            onClick={handleGameComplete}
+                                        >
+                                            <RefreshCw className="w-4 h-4" />
+                                            <span>End game (Terminar juego)</span>
+                                        </button>
+                                    </div>
                                 )}
                             </>
                         )}
@@ -320,15 +321,42 @@ const PaintDrawingGame: React.FC = () => {
                 )}
             </AnimatePresence>
 
+            {gameStage === 'feedback' && gameState.gameStatus === 'completed' && (
+                <FeedbackDisplay
+                    gameId={gameMetadata.id}
+                    score={gameState.score}
+                    maxScore={maxScore}
+                    metrics={{
+                        correct: gameState.metrics.correctColorUses,
+                        incorrect: gameState.metrics.totalColorUses - gameState.metrics.correctColorUses,
+                        timeSpent: gameState.metrics.timeSpent
+                    }}
+                    customMetrics={[
+                        {
+                            label: 'Tiempo de juego',
+                            value: `${Math.round(gameState.metrics.timeSpent / 60)} min ${Math.round(gameState.metrics.timeSpent % 60)} seg`
+                        },
+                        {
+                            label: 'Precisión de colores',
+                            value: `${Math.round((gameState.metrics.correctColorUses / Math.max(1, gameState.metrics.totalColorUses)) * 100)}%`
+                        },
+                        {
+                            label: 'Dibujos completados',
+                            value: `${gameState.completedObjects.length} / ${gameState.objects.length}`
+                        }
+                    ]}
+                    onPlayAgain={handlePlayAgain}
+                />
+            )}
             {process.env.NODE_ENV === 'development' && (
                 <div className="mt-4 p-3 bg-gray-100 rounded-lg">
-                    <h3 className="font-medium text-lg mb-2">Depuración</h3>
+                    <h3 className="font-medium text-lg mb-2">Debug (Depuración)</h3>
                     <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => console.log("Estado actual:", { gameState, parameters })}
                             className="px-3 py-1 bg-blue-500 text-white rounded text-sm"
                         >
-                            Log Estado
+                            Log State (Ver Estado)
                         </button>
                         <button
                             onClick={() => {
@@ -340,7 +368,7 @@ const PaintDrawingGame: React.FC = () => {
                             }}
                             className="px-3 py-1 bg-green-500 text-white rounded text-sm"
                         >
-                            Test Colores
+                            Test Colors (Probar Colores)
                         </button>
                     </div>
                 </div>

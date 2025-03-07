@@ -6,7 +6,6 @@ export interface SpellingWord {
     phonetic: string;         // Representación fonética
     definition: string;       // Definición
     example: string;          // Ejemplo en contexto
-    difficulty: DifficultyLevel;
     category: SpellingCategory;
     spellingPattern?: string; // Patrón ortográfico relevante
 }

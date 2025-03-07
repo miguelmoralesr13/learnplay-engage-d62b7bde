@@ -79,14 +79,13 @@ const ColorLearningPanel: React.FC<ColorLearningPanelProps> = ({
     };
 
     return (
-        <div className="color-learning-panel p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-primary mb-4">
-                {getLevelTitle()}
+        <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-bold mb-4">
+                Learn the colors (Aprende los colores)
             </h2>
-
             <p className="mb-6 text-gray-600">
-                Antes de empezar a dibujar, aprendamos los nombres de estos {displayColors.length} colores en inglés.
-                Haz clic en el botón de reproducción para escuchar la pronunciación.
+                Before you start drawing, familiarize yourself with the colors you'll be using.
+                (Antes de empezar a dibujar, familiarízate con los colores que usarás.)
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -115,14 +114,12 @@ const ColorLearningPanel: React.FC<ColorLearningPanelProps> = ({
                 ))}
             </div>
 
-            <div className="flex justify-center">
-                <button
-                    onClick={onContinue}
-                    className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                    Continuar al juego
-                </button>
-            </div>
+            <button
+                onClick={onContinue}
+                className="mt-8 w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90"
+            >
+                Continue to drawing (Continuar al dibujo)
+            </button>
         </div>
     );
 };

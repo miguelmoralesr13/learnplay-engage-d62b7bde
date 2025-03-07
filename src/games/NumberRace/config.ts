@@ -1,5 +1,5 @@
 import { IGame } from '@/types/game';
-import { NumberRaceParameters, NumberRaceDifficulty } from './types';
+import { NumberRaceParameters } from './types';
 
 // Rangos de números para cada dificultad
 export const NUMBER_RANGES = {
@@ -36,18 +36,17 @@ export const BASE_POINTS = 10;
 
 
 // Configuración principal del juego
-const NUMBER_RACE_CONFIG: IGame = {
+const NUMBER_RACE_CONFIG: IGame<NumberRaceParameters> = {
     id: 'number-race',  // ID único para el juego
     type: 'Writing',
-    difficulty: 'beginner',
     category: 'Arithmetic',
     parameters: {
-        difficulty: 'beginner',
+        difficulty: { value: 'beginner', label: 'Principiante' },
         timeLimit: TIME_LIMITS.beginner,
         maxNumber: 10,
         enableTimer: true,
         numbersToFinish: 10  // Valor por defecto
-    } as NumberRaceParameters,
+    },
     instructions: [
         "Escribe el número que ves en palabras en inglés",
         "Usa guiones para números compuestos (twenty-one, thirty-five)",

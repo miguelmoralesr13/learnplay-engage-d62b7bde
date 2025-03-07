@@ -16,8 +16,9 @@ import SpellingBee from "./games/SpellingBee";
 import PaintDrawingGame from "./games/PaintDrawingGame";
 import NumberRace from './games/NumberRace';
 import MinimalPairsChallenge from '@/games/MinimalPairs';
-import TongueTwistersChallenge from '@/games/TongueTwisters';
-
+import SpeakAndScoreGame from "./games/SpeakAndScore";
+import TongueTwistersGame from './games/TongueTwisters';
+import SimonSaysGame from './games/SimonSays';
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,8 +38,9 @@ const App = () => (
             <Route path="/games/paint-drawing-game" element={<PaintDrawingGame />} />
             <Route path="/games/number-race" element={<NumberRace />} />
             <Route path="/games/minimal-pairs" element={<MinimalPairsChallenge />} />
-            <Route path="/games/tongue-twisters" element={<TongueTwistersChallenge />} />
-            {/* Agregar nuevas rutas de juegos aquí */}
+            <Route path="/games/speak-and-score" element={<SpeakAndScoreGame />} />
+            <Route path="/games/tongue-twisters" element={<TongueTwistersGame />} />
+            <Route path="/games/simon-says" element={<SimonSaysGame />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

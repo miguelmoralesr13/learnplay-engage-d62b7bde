@@ -9,17 +9,17 @@ import ParametersForm from '@/components/game/ParametersForm';
 import InstructionsPanel from '@/components/game/InstructionsPanel';
 import FeedbackDisplay from '@/components/game/FeedbackDisplay';
 import NumberRaceConfig, { TIME_LIMITS, NUMBER_RANGES } from './config';
-import { NumberRaceDifficulty, NumberRaceParameters } from './types';
+import { NumberRaceParameters } from './types';
 import { DifficultyLevel } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import HintDisplay from './components/HintDisplay';
+import { RefreshCw } from 'lucide-react';
 
 type GameStage = 'parameters' | 'instructions' | 'playing' | 'feedback';
 
 const NumberRace = () => {
     // Estado para el flujo del juego
     const [gameStage, setGameStage] = useState<GameStage>('parameters');
-    const [difficulty, setDifficulty] = useState<DifficultyLevel>(NumberRaceConfig.difficulty);
     const [parameters, setParameters] = useState<NumberRaceParameters>(
         NumberRaceConfig.parameters as NumberRaceParameters
     );
@@ -32,27 +32,20 @@ const NumberRace = () => {
         resumeGame,
         handleInputChange,
         checkUserAnswer,
-        requestHint
+        requestHint,
     } = useNumberRace(parameters);
 
     // Manejadores para las transiciones entre etapas
-    const handleParametersSubmit = (newDifficulty: DifficultyLevel, params: any) => {
-        setDifficulty(newDifficulty);
+    const handleParametersSubmit = (params: NumberRaceParameters) => {
 
         // Conversion map para asegurar que usamos valores válidos
-        const difficultyMap: Record<string, NumberRaceDifficulty> = {
-            'beginner': 'beginner',
-            'intermediate': 'intermediate',
-            'advanced': 'advanced'
-        };
 
-        const mappedDifficulty = difficultyMap[newDifficulty] || 'beginner';
 
         // Establecer los parámetros usando los valores del formulario Formik
         setParameters({
-            difficulty: mappedDifficulty,
-            timeLimit: TIME_LIMITS[mappedDifficulty],
-            maxNumber: NUMBER_RANGES[mappedDifficulty].max, // Usamos siempre el max según la dificultad
+            difficulty: params.difficulty,
+            timeLimit: TIME_LIMITS[params.difficulty.value],
+            maxNumber: NUMBER_RANGES[params.difficulty.value].max, // Usamos siempre el max según la dificultad
             enableTimer: params.enableTimer !== undefined ? params.enableTimer : true,
             numbersToFinish: params.numbersToFinish || 10
         });
@@ -81,15 +74,6 @@ const NumberRace = () => {
         handleGameComplete();
     }
 
-    // Manejar cambio de dificultad
-    const handleDifficultyChange = (value: DifficultyLevel) => {
-        const newDifficulty = value as NumberRaceDifficulty;
-        setParameters({
-            ...parameters,
-            difficulty: newDifficulty,
-            timeLimit: TIME_LIMITS[newDifficulty]
-        });
-    };
 
     return (
         <GameWrapper title="Number Race">
@@ -102,13 +86,6 @@ const NumberRace = () => {
                         exit={{ opacity: 0, y: -20 }}
                         className="w-full"
                     >
-                        <div className="mb-6">
-                            <h2 className="text-2xl font-bold mb-4">Game Configuration</h2>
-                            <p className="text-gray-600">
-                                Customize your Number Race experience by adjusting these options.
-                            </p>
-                        </div>
-
                         <ParametersForm
                             gameConfig={NumberRaceConfig}
                             onSubmit={handleParametersSubmit}
@@ -200,14 +177,37 @@ const NumberRace = () => {
                             />
                         </div>
 
-                        {/* Controls */}
-                        <div className="mt-8 flex justify-center space-x-4">
-                            <Button
-                                variant="outline"
-                                onClick={state.gameStatus === 'playing' ? pauseGame : resumeGame}
+                        {/* Mostrar el botón de pausa solo si enableTimer está activado */}
+                        {parameters.enableTimer && (
+                            <div className="mt-8 flex justify-center space-x-4">
+                                <Button
+                                    variant="outline"
+                                    onClick={state.gameStatus === 'playing' ? pauseGame : resumeGame}
+                                >
+                                    {state.gameStatus === 'playing' ? 'Pause' : 'Resume'}
+                                </Button>
+                            </div>
+                        )}
+
+                        <div className="mt-8 border-t pt-4 flex justify-between items-center">
+                            <div className="flex items-center gap-4">
+                                <div className="text-sm text-green-600">
+                                    Correctas: {state.numberHistory.filter(h => h.wasCorrect).length}
+                                </div>
+                                <div className="text-sm text-red-600">
+                                    Incorrectas: {state.numberHistory.filter(h => !h.wasCorrect).length}
+                                </div>
+                            </div>
+
+                            <button
+                                className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                onClick={() => {
+                                    setGameStage('feedback');
+                                }}
                             >
-                                {state.gameStatus === 'playing' ? 'Pause' : 'Resume'}
-                            </Button>
+                                <RefreshCw className="w-4 h-4" />
+                                <span>Terminar juego</span>
+                            </button>
                         </div>
                     </motion.div>
                 )}

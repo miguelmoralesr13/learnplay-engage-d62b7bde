@@ -1,7 +1,7 @@
-export type NumberRaceDifficulty = 'beginner' | 'intermediate' | 'advanced';
+import { DifficultyLevel } from "@/types/game";
 
 export interface NumberRaceParameters {
-    difficulty: NumberRaceDifficulty;
+    difficulty: { value: DifficultyLevel, label: string };
     timeLimit: number; // en segundos
     maxNumber: number;
     enableTimer?: boolean;
@@ -32,7 +32,7 @@ export interface NumberRaceState {
 }
 
 export type NumberRanges = {
-    [key in NumberRaceDifficulty]: {
+    [key in DifficultyLevel]: {
         min: number;
         max: number;
     };

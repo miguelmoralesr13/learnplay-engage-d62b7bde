@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { DifficultyLevel, GameStatus, GameParameters } from '@/types/game';
+import { GameStatus } from '@/types/game';
 import { gameMetadata as paintDrawingGameMetadata } from '@/games/PaintDrawingGame/metadata';
 import { gameMetadata as minimalPairsMetadata } from '@/games/MinimalPairs/metadata';
 import { gameMetadata as wordRushMetadata } from '@/games/WordRush/metadata';
@@ -8,10 +8,11 @@ import { gameMetadata as sentenceBuilderMetadata } from '@/games/SentenceBuilder
 import { gameMetadata as verbFormsMetadata } from '@/games/VerbForms/metadata';
 import { gameMetadata as wordMatchMetadata } from '@/games/WordMatch/metadata';
 import { gameMetadata as tongueTwistersMetadata } from '@/games/TongueTwisters/metadata';
+import { gameMetadata as speakAndScoreMetadata } from '@/games/SpeakAndScore/metadata';
+import { gameMetadata as simonSaysMetadata } from '@/games/SimonSays/metadata';
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 export type GameCategory = 'vocabulary' | 'grammar' | 'listening' | 'reading' | 'speaking';
-
 export interface Game {
   id: string;
   name: string;
@@ -37,7 +38,7 @@ export interface UserProgress {
 }
 
 interface GameSettings {
-  difficulty: DifficultyLevel;
+  difficulty: Difficulty;
   timerEnabled: boolean;
 }
 
@@ -71,6 +72,8 @@ const useGameStore = create<GameStoreState>()(
         paintDrawingGameMetadata,
         minimalPairsMetadata,
         tongueTwistersMetadata,
+        speakAndScoreMetadata,
+        simonSaysMetadata,
       ],
       currentGame: null,
       activeFilters: {
@@ -167,4 +170,3 @@ const useGameStore = create<GameStoreState>()(
 );
 
 export default useGameStore;
-export type { DifficultyLevel };

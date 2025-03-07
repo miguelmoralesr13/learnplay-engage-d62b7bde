@@ -1,146 +1,228 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useWordMatchGame } from './hooks/useWordMatchGame';
-import WordGrid from './components/WordGrid';
 import { Timer, RefreshCw } from 'lucide-react';
 import WordMatchGameConfig from './config';
-import { DifficultyLevel } from '@/types/game';
 import { WordMatchParameters } from './types';
 import GameWrapper from '@/components/game/GameWrapper';
 import ParametersForm from '@/components/game/ParametersForm';
 import InstructionsPanel from '@/components/game/InstructionsPanel';
 import FeedbackDisplay from '@/components/game/FeedbackDisplay';
+import WordGrid from './components/WordGrid';
+import { useWordMatchStore } from './store';
 
-type GameStage = 'parameters' | 'instructions' | 'playing' | 'feedback';
+// Añadir tipos para las props de los componentes
+interface GameStageProps {
+    stage: string;
+    onComplete: () => void;
+    onPlayAgain: () => void;
+}
 
-const WordMatchGame = () => {
-    // Estado para el flujo del juego
-    const [gameStage, setGameStage] = useState<GameStage>('parameters');
-    const [difficulty, setDifficulty] = useState<DifficultyLevel>(WordMatchGameConfig.difficulty);
-    const [parameters, setParameters] = useState<WordMatchParameters>(
-        WordMatchGameConfig.parameters as WordMatchParameters
-    );
+interface GameBoardProps {
+    onEndGame: () => void;
+}
 
-    // Hook personalizado para la lógica del juego
+// Componente para la fase del juego - Principio SRP
+const GameStage = ({ stage, onComplete, onPlayAgain }: GameStageProps) => {
     const {
-        gameState,
         startGame,
-        selectWord,
-        selectTranslation,
+        selectCard,
         endGame,
         calculateScore,
         formatTime,
-        isGameCompleted
-    } = useWordMatchGame(difficulty, parameters);
+        isGameCompleted,
+        words,
+        translations,
+        selectedCards,
+        matchedPairs,
+        timeLeft,
+        metrics,
+        incorrectAttempts
+    } = useWordMatchStore();
 
-    // Manejadores para las transiciones entre etapas
-    const handleParametersSubmit = (difficulty: DifficultyLevel, params: WordMatchParameters) => {
-        setDifficulty(difficulty);
-        setParameters(params);
-        setGameStage('instructions');
-    };
+    // Verificar finalización del juego
+    useEffect(() => {
+        if (stage === 'playing' && (isGameCompleted() || timeLeft <= 0)) {
+            endGame();
+            onComplete();
+        }
+    }, [stage, isGameCompleted, timeLeft, endGame, onComplete]);
 
-    const handleInstructionsComplete = () => {
-        startGame();
-        setGameStage('playing');
-    };
+    switch (stage) {
+        case 'parameters':
+            return (
+                <ParametersForm
+                    gameConfig={WordMatchGameConfig}
+                    onSubmit={(params) => {
+                        startGame(params);
+                        onComplete();
+                    }}
+                />
+            );
 
-    const handleGameComplete = () => {
-        endGame();
-        setGameStage('feedback');
+        case 'instructions':
+            return (
+                <InstructionsPanel
+                    instructions={WordMatchGameConfig.instructions}
+                    onComplete={onComplete}
+                />
+            );
+
+        case 'playing':
+            return (
+                <GameBoard
+                    onEndGame={() => {
+                        endGame();
+                        onComplete();
+                    }}
+                />
+            );
+
+        case 'feedback':
+            return (
+                <FeedbackDisplay
+                    gameId="word-match"
+                    score={calculateScore()}
+                    maxScore={words.length * 100}
+                    metrics={{
+                        correct: matchedPairs.length / 2,
+                        incorrect: metrics.incorrect,
+                        timeSpent: metrics.timeSpent,
+                        accuracy: matchedPairs.length > 0
+                            ? Math.round((metrics.correct / (metrics.correct + metrics.incorrect)) * 100)
+                            : 0
+                    }}
+                    customMetrics={[
+                        {
+                            label: 'Tiempo de juego',
+                            value: `${Math.floor(metrics.timeSpent / 60)}m ${metrics.timeSpent % 60}s`
+                        },
+                        {
+                            label: 'Intentos incorrectos',
+                            value: incorrectAttempts.toString()
+                        },
+                        {
+                            label: 'Parejas encontradas',
+                            value: `${matchedPairs.length / 2} / ${words.length}`
+                        }
+                    ]}
+                    onPlayAgain={onPlayAgain}
+                />
+            );
+
+        default:
+            return null;
+    }
+};
+
+// Componente tablero del juego - Principio SRP
+const GameBoard = ({ onEndGame }: GameBoardProps) => {
+    const {
+        words,
+        translations,
+        selectedCards,
+        matchedPairs,
+        selectCard,
+        formatTime,
+        timeLeft,
+        parameters
+    } = useWordMatchStore();
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="glass-card rounded-2xl p-6 w-full"
+        >
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Word Match</h2>
+
+                {parameters?.timerEnabled && (
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary">
+                        <Timer className="w-4 h-4 text-purple" />
+                        <span className="font-medium">{formatTime(timeLeft)}</span>
+                    </div>
+                )}
+            </div>
+
+            <div className="flex flex-col md:flex-row gap-8 mb-8">
+                <WordGrid
+                    words={words}
+                    selectedCards={selectedCards}
+                    matchedPairs={matchedPairs}
+                    onSelect={selectCard}
+                    label="English"
+                    isTranslation={false}
+                />
+
+                <WordGrid
+                    words={translations}
+                    selectedCards={selectedCards}
+                    matchedPairs={matchedPairs}
+                    onSelect={selectCard}
+                    label="Español"
+                    isTranslation={true}
+                />
+            </div>
+
+            <div className="flex justify-between items-center">
+                <div className="text-sm text-muted-foreground">
+                    Parejas: {matchedPairs.length / 2} / {words.length / 2}
+                </div>
+
+                <button
+                    className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                    onClick={onEndGame}
+                >
+                    <RefreshCw className="w-4 h-4" />
+                    <span>Terminar juego</span>
+                </button>
+            </div>
+        </motion.div>
+    );
+};
+
+// Componente principal - Control de flujo
+const WordMatchGame = () => {
+    const [gameStage, setGameStage] = useState('parameters');
+
+    const handleStageComplete = () => {
+        switch (gameStage) {
+            case 'parameters':
+                setGameStage('instructions');
+                break;
+            case 'instructions':
+                setGameStage('playing');
+                break;
+            case 'playing':
+                setGameStage('feedback');
+                break;
+        }
     };
 
     const handlePlayAgain = () => {
         setGameStage('parameters');
     };
 
-    // Comprobar si el juego ha terminado
-    if (gameStage === 'playing' && (isGameCompleted || gameState.timeLeft <= 0)) {
-        handleGameComplete();
-    }
+    useEffect(() => {
+        const store = useWordMatchStore.getState();
+
+        return () => {
+            if (store.timerId) {
+                clearInterval(store.timerId);
+            }
+        };
+    }, []);
 
     return (
         <GameWrapper title="Word Match">
             <AnimatePresence mode="wait">
-                {gameStage === 'parameters' && (
-                    <ParametersForm
-                        key="parameters"
-                        gameConfig={WordMatchGameConfig}
-                        onSubmit={handleParametersSubmit}
-                    />
-                )}
-
-                {gameStage === 'instructions' && (
-                    <InstructionsPanel
-                        key="instructions"
-                        instructions={WordMatchGameConfig.instructions}
-                        onComplete={handleInstructionsComplete}
-                    />
-                )}
-
-                {gameStage === 'playing' && (
-                    <motion.div
-                        key="playing"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="glass-card rounded-2xl p-6 w-full"
-                    >
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-bold">Word Match</h2>
-
-                            {parameters.timerEnabled && (
-                                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary">
-                                    <Timer className="w-4 h-4 text-purple" />
-                                    <span className="font-medium">{formatTime(gameState.timeLeft)}</span>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="flex flex-col md:flex-row gap-8 mb-8">
-                            <WordGrid
-                                words={gameState.words}
-                                selectedIndex={gameState.selectedWord}
-                                matchedPairs={gameState.matchedPairs}
-                                onSelect={selectWord}
-                                label="English"
-                            />
-
-                            <WordGrid
-                                words={gameState.translations}
-                                selectedIndex={gameState.selectedTranslation}
-                                matchedPairs={gameState.matchedPairs}
-                                onSelect={selectTranslation}
-                                label="Español"
-                            />
-                        </div>
-
-                        <div className="flex justify-between items-center">
-                            <div className="text-sm text-muted-foreground">
-                                Parejas: {gameState.matchedPairs.length / 2} / {gameState.words.length / 2}
-                            </div>
-
-                            <button
-                                className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
-                                onClick={handleGameComplete}
-                            >
-                                <RefreshCw className="w-4 h-4" />
-                                <span>Terminar juego</span>
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
-
-                {gameStage === 'feedback' && (
-                    <FeedbackDisplay
-                        key="feedback"
-                        gameId="word-match"
-                        score={calculateScore()}
-                        maxScore={gameState.words.length / 2 * 100}
-                        metrics={gameState.metrics}
-                        onPlayAgain={handlePlayAgain}
-                    />
-                )}
+                <GameStage
+                    key={gameStage}
+                    stage={gameStage}
+                    onComplete={handleStageComplete}
+                    onPlayAgain={handlePlayAgain}
+                />
             </AnimatePresence>
         </GameWrapper>
     );

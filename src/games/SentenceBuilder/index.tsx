@@ -7,7 +7,7 @@ import GrammarHint from './components/GrammarHint';
 import ParametersForm from '@/components/game/ParametersForm';
 import InstructionsPanel from '@/components/game/InstructionsPanel';
 import FeedbackDisplay from '@/components/game/FeedbackDisplay';
-import { Timer, Lightbulb, Check, ArrowRight } from 'lucide-react';
+import { Timer, Lightbulb, Check, ArrowRight, RefreshCw } from 'lucide-react';
 import SentenceBuilderGameConfig from './config';
 import { DifficultyLevel } from '@/types/game';
 import { SentenceBuilderParameters, Word } from './types';
@@ -205,7 +205,7 @@ const SentenceBuilder = () => {
                             </div>
                         </div>
 
-                        {/* Botones de acción */}
+                        {/* Botones de acción principales */}
                         <div className="mt-8 flex justify-between">
                             {gameState.isCorrect === null && gameState.wordOrder.length > 0 && (
                                 <button
@@ -229,19 +229,32 @@ const SentenceBuilder = () => {
 
                             {gameState.isCorrect === false && (
                                 <button
-                                    onClick={() => {
-                                        // Reiniciar la oración actual usando las funciones del hook
-                                        // Opción 1: Si existe una función para reiniciar en el hook
-                                        restartCurrentSentence();
-
-                                        // Opción 2: Si no existe, podemos usar una combinación de funciones existentes
-                                        // Como resetear el wordOrder y el estado de corrección
-                                    }}
+                                    onClick={restartCurrentSentence}
                                     className="flex items-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors"
                                 >
                                     Reintentar
                                 </button>
                             )}
+                        </div>
+
+                        {/* Estadísticas y botón de terminar al final */}
+                        <div className="flex justify-between items-center mt-6">
+                            <div className="flex items-center gap-4">
+                                <div className="text-sm text-green-600">
+                                    Correctas: {gameState.metrics.correct}
+                                </div>
+                                <div className="text-sm text-red-600">
+                                    Incorrectas: {gameState.metrics.incorrect}
+                                </div>
+                            </div>
+
+                            <button
+                                className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                onClick={handleGameComplete}
+                            >
+                                <RefreshCw className="w-4 h-4" />
+                                <span>Terminar juego</span>
+                            </button>
                         </div>
                     </motion.div>
                 )}

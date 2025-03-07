@@ -16,12 +16,14 @@ import { DifficultyLevel } from '@/types/game';
 import { ParameterFormFactory } from '@/games/factories/ParameterFormFactory';
 import ParametersForm from '@/components/game/ParametersForm';
 
+// 1. Importar el ícono RefreshCw
+import { RefreshCw } from 'lucide-react';
+
 type GameStage = 'parameters' | 'instructions' | 'playing' | 'feedback';
 
 const SpellingBee = () => {
     // Estado para el flujo del juego
     const [gameStage, setGameStage] = useState<GameStage>('parameters');
-    const [difficulty, setDifficulty] = useState<DifficultyLevel>(SpellingBeeGameConfig.difficulty);
     const [parameters, setParameters] = useState<SpellingBeeParameters>(
         SpellingBeeGameConfig.parameters as SpellingBeeParameters
     );
@@ -38,10 +40,10 @@ const SpellingBee = () => {
         getCurrentHint,
         endGame,
         retryWord
-    } = useSpellingGame(difficulty, parameters);
+    } = useSpellingGame(parameters);
 
     // Manejador para el envío del formulario dinámico
-    const handleFormSubmit = (difficultyValue: DifficultyLevel, formValues: any) => {
+    const handleFormSubmit = (formValues: any) => {
         // Convertir los valores del formulario al formato SpellingBeeParameters
         const newParams: SpellingBeeParameters = {
             wordsPerRound: formValues.wordsPerRound || 10,
@@ -51,7 +53,6 @@ const SpellingBee = () => {
             categories: formValues.categories || ['commonWords']
         };
 
-        setDifficulty(difficultyValue);
         setParameters(newParams);
         setGameStage('instructions');
     };
@@ -99,12 +100,7 @@ const SpellingBee = () => {
                         exit={{ opacity: 0, y: -20 }}
                         className="w-full"
                     >
-                        <div className="mb-6">
-                            <h2 className="text-2xl font-bold mb-4">Configuración del juego</h2>
-                            <p className="text-gray-600">
-                                Personaliza tu experiencia de Spelling Bee ajustando estas opciones.
-                            </p>
-                        </div>
+
 
                         <ParametersForm
                             gameConfig={SpellingBeeGameConfig}
@@ -173,6 +169,31 @@ const SpellingBee = () => {
                                         <div>Intentos: {gameState.attempts}/{parameters.maxAttempts}</div>
                                         <div>Puntuación: {gameState.score}</div>
                                     </div>
+                                </div>
+
+                                {/* Añadir al final de la sección pero dentro del contenedor principal */}
+                                <div className="mt-8 border-t pt-4 flex justify-between items-center">
+                                    <div className="flex items-center gap-4">
+                                        <div className="text-sm text-green-600">
+                                            Correctas: {gameState.correctWords.length}
+                                        </div>
+                                        <div className="text-sm text-red-600">
+                                            Incorrectas: {gameState.incorrectWords.length}
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                        onClick={() => {
+                                            // Llamar a la función para terminar el juego
+                                            endGame();
+                                            // Cambiar a la pantalla de feedback/resultados
+                                            setGameStage('feedback');
+                                        }}
+                                    >
+                                        <RefreshCw className="w-4 h-4" />
+                                        <span>Terminar juego</span>
+                                    </button>
                                 </div>
                             </div>
                         ) : (

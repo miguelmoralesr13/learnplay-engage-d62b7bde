@@ -52,7 +52,14 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
     };
 
     return (
-        <div className="color-palette p-4 bg-white rounded-lg shadow-md">
+        <div className="bg-white rounded-lg shadow-sm p-4">
+            <h3 className="font-medium text-lg mb-3">
+                Color Palette (Paleta de colores)
+            </h3>
+            <p className="text-sm text-gray-600 mb-4">
+                Select a color to use in your drawing (Selecciona un color para usar en tu dibujo)
+            </p>
+
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-medium">
                     {determineLevel(colors.length)} ({colors.length})

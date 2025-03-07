@@ -1,74 +1,78 @@
 # .cursorrules
 
-# Reglas para el desarrollo de juegos en el proyecto
+# Rules for Game Development in the Project
 
-## Principios SOLID
+## SOLID Principles
 1. **Single Responsibility Principle (SRP)**:
-   - Cada componente o módulo debe tener una única responsabilidad.
-   - Ejemplo: El componente `GameWrapper` solo debe manejar el ciclo de vida del juego, no la lógica específica del juego.
+   - Each component or module should have a single responsibility.
+   - Example: The `GameWrapper` component should only handle the game lifecycle, not the specific game logic.
 
 2. **Open/Closed Principle (OCP)**:
-   - Los componentes deben estar abiertos para extensión pero cerrados para modificación.
-   - Ejemplo: Para agregar un nuevo tipo de juego, extiende la interfaz `IGame` en lugar de modificar el código existente.
+   - Components should be open for extension but closed for modification.
+   - Example: To add a new game type, extend the `IGame` interface instead of modifying existing code.
 
 3. **Liskov Substitution Principle (LSP)**:
-   - Las clases derivadas deben ser sustituibles por sus clases base sin alterar el comportamiento del programa.
-   - Ejemplo: Todos los juegos que implementan `IGame` deben poder ser usados en cualquier lugar donde se espere un objeto de tipo `IGame`.
+   - Derived classes should be substitutable for their base classes without altering the program's behavior.
+   - Example: All games implementing `IGame` should be usable anywhere an `IGame` object is expected.
 
 4. **Interface Segregation Principle (ISP)**:
-   - Las interfaces deben ser específicas para cada cliente, evitando interfaces demasiado grandes.
-   - Ejemplo: Si un juego no necesita funcionalidades de audio, no debe implementar métodos relacionados con audio.
+   - Interfaces should be specific to each client, avoiding overly large interfaces.
+   - Example: If a game does not need audio functionalities, it should not implement audio-related methods.
 
 5. **Dependency Inversion Principle (DIP)**:
-   - Los módulos de alto nivel no deben depender de módulos de bajo nivel, ambos deben depender de abstracciones.
-   - Ejemplo: El `GameStore` debe depender de la interfaz `IGame` en lugar de implementaciones concretas de juegos.
+   - High-level modules should not depend on low-level modules; both should depend on abstractions.
+   - Example: The `GameStore` should depend on the `IGame` interface rather than concrete game implementations.
 
-## Buenas Prácticas
+## Best Practices
 
-### Estructura de Archivos
-- **Organización**: Sigue la estructura de directorios definida en `src/games/[GameName]/`.
-- **Nombres de Archivos**: Usa nombres descriptivos y consistentes (e.g., `index.tsx`, `config.ts`, `types.ts`).
+### File Structure
+- **Organization**: Follow the directory structure defined in `src/games/[GameName]/`.
+- **File Naming**: Use descriptive and consistent file names (e.g., `index.tsx`, `config.ts`, `types.ts`).
 
-### Componentes
-- **Reutilización**: Usa componentes base como `GameWrapper`, `ParametersForm`, y `InstructionsPanel` para evitar duplicación de código.
-- **Props**: Define claramente las props de los componentes usando TypeScript para mejorar la seguridad y legibilidad del código.
+### Components
+- **Reusability**: Use base components like `/src/components/game/GameWrapper`, `/src/components/game/ParametersForm`, `/src/components/game/InstructionsPanel`, and `/src/components/game/FeedbackDisplay` to avoid code duplication.
+- **Props**: Clearly define component props using TypeScript to improve code safety and readability.
+### libs
+- **Reusability**: Use libraries such as `/src/lib/audioUtils`, `/src/lib/textToSpeech`, `/src/lib/speech/speechRecognizer`, `/src/lib/speech/visualizerHelper`, and `/src/lib/speech/speechRecognizer` to avoid code duplication when working with audio or speech recognition.
+- **Placement**: Place reusable files in the `/src/lib/` directory so they are easily accessible from anywhere in the project.
 
-### Estado
-- **Gestión de Estado**: Usa Zustand para manejar el estado global del juego. Evita el uso excesivo de estado local en componentes.
-- **Acciones**: Define acciones claras y específicas en el store para modificar el estado.
+
+### State Management
+- **State Management**: Use Zustand to manage global game state. Avoid excessive use of local state in components.
+- **Actions**: Define clear and specific actions in the store to modify the state.
 
 ### Testing
-- **Pruebas Unitarias**: Escribe pruebas unitarias para cada componente y hook.
-- **Pruebas de Integración**: Asegúrate de que los componentes funcionen correctamente juntos.
+- **Unit Tests**: Write unit tests for each component and hook.
+- **Integration Tests**: Ensure that components work correctly together.
 
-### Documentación
-- **Comentarios**: Documenta el código con comentarios claros y concisos.
-- **README**: Incluye un archivo `README.md` en cada directorio de juego que explique su funcionalidad y cómo usarlo.
+### Documentation
+- **Comments**: Document the code with clear and concise comments.
+- **README**: Include a `README.md` file in each game directory explaining its functionality and how to use it.
 
-### Rendimiento
-- **Lazy Loading**: Usa lazy loading para cargar componentes y recursos solo cuando sean necesarios.
-- **Optimización**: Optimiza el rendimiento evitando renders innecesarios y usando memoización cuando sea apropiado.
+### Performance
+- **Lazy Loading**: Use lazy loading to load components and resources only when needed.
+- **Optimization**: Optimize performance by avoiding unnecessary renders and using memoization where appropriate.
 
-### Accesibilidad
-- **Accesibilidad**: Asegúrate de que todos los componentes sean accesibles, incluyendo soporte para teclado y lectores de pantalla.
-- **Temas**: Usa `next-themes` para soportar temas claros y oscuros.
+### Accessibility
+- **Accessibility**: Ensure all components are accessible, including keyboard and screen reader support.
+- **Themes**: Use `next-themes` to support light and dark themes.
 
-## Creación de un Nuevo Juego
+## Creating a New Game
 
-### Pasos para Agregar un Nuevo Juego
-1. **Crear un Nuevo Directorio**:
-   - Crea un nuevo directorio bajo `src/games/[GameName]/`.
+### Steps to Add a New Game
+1. **Create a New Directory**:
+   - Create a new directory under `src/games/[GameName]/`.
 
-2. **Implementar la Interfaz `IGame`**:
-   - Implementa la interfaz `IGame` en el nuevo juego.
+2. **Implement the `IGame` Interface**:
+   - Implement the `IGame` interface in the new game.
 
-3. **Crear Componentes Específicos**:
-   - Crea componentes específicos para el juego en el directorio `components/`.
+3. **Create Specific Components**:
+   - Create game-specific components in the `components/` directory.
 
-4. **Registrar el Juego**:
-   - Registra el juego en el store usando el archivo `metadata.ts` y el hook `useGameRegistry`.
+4. **Register the Game**:
+   - Register the game in the store using the `metadata.ts` file and the `useGameRegistry` hook.
 
-5. **Agregar Rutas**:
-   - Agrega una ruta para el nuevo juego en `App.tsx`.
+5. **Add Routes**:
+   - Add a route for the new game in `App.tsx`.
 
-### Ejemplo de Estructura de Directorio
+### Example Directory Structure

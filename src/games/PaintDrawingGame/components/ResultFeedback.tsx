@@ -28,23 +28,28 @@ const ResultFeedback: React.FC<ResultFeedbackProps> = ({
     const extraColors = usedColorsArray.filter(color => !object.requiredColors.includes(color));
 
     return (
-        <div className="result-feedback p-6 bg-white rounded-lg shadow-md">
-            <div className="flex items-center mb-4">
-                <div
-                    className={`w-10 h-10 flex items-center justify-center rounded-full mr-3 ${isCorrect ? 'bg-green-100 text-green-500' : 'bg-red-100 text-red-500'
-                        }`}
-                >
-                    {isCorrect ? <Check /> : <X />}
-                </div>
-
-                <h2 className="text-xl font-bold">
-                    {isCorrect ? '¡Muy bien!' : 'Inténtalo de nuevo'}
+        <div className="bg-white rounded-lg shadow-md p-6">
+            <div className={`text-center mb-6 p-4 rounded-lg ${isCorrect ? 'bg-green-100' : 'bg-amber-100'}`}>
+                <h2 className="text-2xl font-bold mb-2">
+                    {isCorrect
+                        ? 'Great job! (¡Buen trabajo!)'
+                        : 'Almost there! (¡Casi lo tienes!)'}
                 </h2>
+                <p className="text-gray-700">
+                    {isCorrect
+                        ? 'You used the colors correctly! (¡Usaste los colores correctamente!)'
+                        : 'Try to use the right colors for each part. (Intenta usar los colores correctos para cada parte.)'}
+                </p>
+                <div className="mt-3 text-lg font-bold">
+                    Score: +{score} points (puntos)
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <h3 className="text-lg font-medium mb-3">Tu dibujo</h3>
+                    <h3 className="font-medium mb-2">
+                        Your drawing (Tu dibujo)
+                    </h3>
                     {userDrawing && (
                         <img
                             src={userDrawing}
@@ -55,7 +60,9 @@ const ResultFeedback: React.FC<ResultFeedbackProps> = ({
                 </div>
 
                 <div>
-                    <h3 className="text-lg font-medium mb-3">Colores utilizados</h3>
+                    <h3 className="font-medium mb-2">
+                        Used colors (Colores usados)
+                    </h3>
 
                     {correctColors.length > 0 && (
                         <div className="mb-3">
@@ -113,18 +120,12 @@ const ResultFeedback: React.FC<ResultFeedbackProps> = ({
                 </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t">
-                <div className="text-lg">
-                    Puntuación: <span className="font-bold">{score}</span>
-                </div>
-
-                <button
-                    onClick={onNext}
-                    className="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                    Continuar <ChevronRight size={16} className="ml-1" />
-                </button>
-            </div>
+            <button
+                onClick={onNext}
+                className="mt-6 w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90"
+            >
+                Continue (Continuar)
+            </button>
         </div>
     );
 };

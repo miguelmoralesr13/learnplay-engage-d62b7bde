@@ -4,7 +4,6 @@ import { SpellingBeeParameters } from './types';
 const SpellingBeeGameConfig: IGame = {
     id: 'spelling-bee',  // ID único para el juego
     type: 'Writing',
-    difficulty: 'intermediate',
     category: 'Vocabulary',
     parameters: {
         wordsPerRound: 10,

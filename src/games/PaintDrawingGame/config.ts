@@ -3,18 +3,18 @@ import { ColorLevel, PaintDrawingParameters } from './types';
 
 const PaintDrawingGameConfig: IGame = {
     id: 'paint-drawing',
-    type: 'Canvas',
-    difficulty: 'beginner',
+    type: 'Vocabulary',
     category: 'Vocabulary',
     parameters: {
+        difficulty: { label: 'Dificultad', value: 'beginner' },
         roundsCount: 3,
         timerEnabled: true,
         timePerRound: 120,
-        colorLevel: 'basic' as ColorLevel,
+        colorLevel: 'basic',
         showColorNames: true,
         enableAudio: false,
         objectsPerRound: 1,
-        timeLimit: 0
+        timeLimit: 0,
     } as PaintDrawingParameters,
 
     instructions: [

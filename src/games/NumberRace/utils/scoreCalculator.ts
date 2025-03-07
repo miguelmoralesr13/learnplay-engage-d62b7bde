@@ -1,11 +1,11 @@
+import { DifficultyLevel } from '@/types/game';
 import { BASE_POINTS, TIME_BONUS } from '../config';
-import { NumberRaceDifficulty } from '../types';
 
 /**
  * Calcula la puntuación basada en la dificultad y el tiempo de respuesta
  */
 export function calculateScore(
-    difficulty: NumberRaceDifficulty,
+    difficulty: { label: string, value: DifficultyLevel },
     responseTimeMs: number,
     isCorrect: boolean
 ): number {
@@ -19,7 +19,7 @@ export function calculateScore(
         easy: 1,
         medium: 1.5,
         hard: 2
-    }[difficulty];
+    }[difficulty.value];
 
     // Factor de tiempo (respuestas más rápidas dan más puntos)
     // Máximo 3 segundos para puntuación máxima
@@ -35,10 +35,10 @@ export function calculateScore(
  * Calcula el tiempo adicional basado en la velocidad de respuesta
  */
 export function calculateTimeBonus(
-    difficulty: NumberRaceDifficulty,
+    difficulty: { label: string, value: DifficultyLevel },
     responseTimeMs: number
 ): number {
-    const baseBonus = TIME_BONUS[difficulty];
+    const baseBonus = TIME_BONUS[difficulty.value];
     const responseTimeSec = responseTimeMs / 1000;
 
     // Si la respuesta es muy rápida (menos de 2 segundos), dar bonificación adicional

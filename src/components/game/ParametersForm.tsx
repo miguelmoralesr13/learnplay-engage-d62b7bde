@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DifficultyLevel } from '@/types/game';
+import { DifficultyLevel, IGame } from '@/types/game';
 import { FormDefinition, FormField } from '@/types/parameterForm';
 import CustomSelect from '../form/CustomSelect';
 import RangeSlider from '../form/RangeSlider';
@@ -9,7 +9,7 @@ import Checkbox from '../form/Checkbox';
 import MultiSelectChips from '../form/MultiSelectChips';
 
 interface ParametersFormProps {
-    gameConfig: any;
+    gameConfig: IGame;
     onSubmit: (formData: any) => void;
     onReset?: () => void;
 }
@@ -81,7 +81,7 @@ const ParametersForm: React.FC<ParametersFormProps> = ({
                                     <CustomSelect
                                         name={field.name}
                                         label={field.label}
-                                        value={formValues[field.name] || ''}
+                                        value={formValues[field.name] || field.defaultValue}
                                         options={field.options || []}
                                         onChange={handleChange}
                                         description={field.description}

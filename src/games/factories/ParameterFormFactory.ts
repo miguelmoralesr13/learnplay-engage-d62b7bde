@@ -2,6 +2,11 @@ import { FormDefinition } from '@/types/parameterForm';
 import { NUMBER_RANGES } from '@/games/NumberRace/config';
 import MinimalPairsConfig from '@/games/MinimalPairs/config';
 import { IGame } from '@/types/game';
+import { NumberRaceParameters } from '../NumberRace/types';
+import { WordMatchParameters } from '../WordMatch/types';
+import { SentenceBuilderParameters } from '../SentenceBuilder/types';
+import { VerbFormsParameters } from '../VerbForms/types';
+import { PaintDrawingParameters } from '../PaintDrawingGame/types';
 
 // Clase Factory para crear definiciones de formulario específicos para cada juego
 export class ParameterFormFactory {
@@ -32,6 +37,8 @@ export class ParameterFormFactory {
                 return ParameterFormFactory.createSpeakAndScoreForm(gameConfig);
             case 'tongue-twisters':
                 return ParameterFormFactory.createTongueTwistersForm(gameConfig);
+            case 'simon-says':
+                return ParameterFormFactory.createSimonSaysForm(gameConfig);
             // Agregar más casos específicos aquí
             default:
                 // Formulario genérico por defecto
@@ -56,8 +63,9 @@ export class ParameterFormFactory {
         }
     }
 
+
     // Método para crear formulario específico de NumberRace
-    private static createNumberRaceForm(gameConfig: IGame): FormDefinition {
+    private static createNumberRaceForm(gameConfig: IGame<NumberRaceParameters>): FormDefinition {
         return {
             id: 'number-race-form',
             title: 'Number Race Configuration',
@@ -72,7 +80,7 @@ export class ParameterFormFactory {
                         { value: 'intermediate', label: 'Intermediate (Numbers 10-1,000)' },
                         { value: 'advanced', label: 'Advanced (Numbers 1,000-1,000,000)' },
                     ],
-                    defaultValue: gameConfig.difficulty || 'beginner',
+                    defaultValue: gameConfig.parameters.difficulty || { label: 'Dificultad', value: 'beginner' },
                     description: 'Choose the difficulty level'
                 },
                 {
@@ -98,7 +106,7 @@ export class ParameterFormFactory {
     }
 
     // Método para crear formulario específico de WordMatch
-    private static createWordMatchForm(gameConfig: IGame): FormDefinition {
+    private static createWordMatchForm(gameConfig: IGame<WordMatchParameters>): FormDefinition {
         return {
             id: 'word-match-form',
             title: 'Word Match Configuration',
@@ -113,7 +121,7 @@ export class ParameterFormFactory {
                         { value: 'intermediate', label: 'Intermediate' },
                         { value: 'advanced', label: 'Advanced' },
                     ],
-                    defaultValue: gameConfig.difficulty || 'beginner',
+                    defaultValue: gameConfig.parameters.difficulty || { label: 'Dificultad', value: 'beginner' },
                     description: 'Choose the difficulty level'
                 },
                 {
@@ -183,7 +191,7 @@ export class ParameterFormFactory {
     }
 
     // Método específico para SentenceBuilder
-    private static createSentenceBuilderForm(gameConfig: IGame): FormDefinition {
+    private static createSentenceBuilderForm(gameConfig: IGame<SentenceBuilderParameters>): FormDefinition {
         return {
             id: 'sentence-builder-form',
             title: 'Sentence Builder Configuration',
@@ -198,7 +206,7 @@ export class ParameterFormFactory {
                         { value: 'intermediate', label: 'Intermediate' },
                         { value: 'advanced', label: 'Advanced' },
                     ],
-                    defaultValue: gameConfig.difficulty || 'intermediate',
+                    defaultValue: gameConfig.parameters.difficulty || { label: 'Dificultad', value: 'intermediate' },
                     description: 'Choose the difficulty level'
                 },
                 {
@@ -303,7 +311,7 @@ export class ParameterFormFactory {
     }
 
     // Método para crear formulario específico de VerbForms
-    private static createVerbFormsForm(gameConfig: IGame): FormDefinition {
+    private static createVerbFormsForm(gameConfig: IGame<VerbFormsParameters>): FormDefinition {
         return {
             id: 'verb-forms-form',
             title: 'Verb Forms Configuration',
@@ -318,7 +326,7 @@ export class ParameterFormFactory {
                         { value: 'intermediate', label: 'Intermediate' },
                         { value: 'advanced', label: 'Advanced' }
                     ],
-                    defaultValue: gameConfig.difficulty || 'beginner',
+                    defaultValue: gameConfig.parameters.difficulty || { label: 'Dificultad', value: 'beginner' },
                     description: 'Choose the overall difficulty of the game'
                 },
                 {
@@ -387,7 +395,7 @@ export class ParameterFormFactory {
     }
 
     // Método para crear formulario específico de PaintDrawingGame
-    private static createPaintDrawingForm(gameConfig: IGame): FormDefinition {
+    private static createPaintDrawingForm(gameConfig: IGame<PaintDrawingParameters>): FormDefinition {
         return {
             id: 'paint-drawing-form',
             title: 'Paint Drawing Configuration',
@@ -402,7 +410,7 @@ export class ParameterFormFactory {
                         { value: 'intermediate', label: 'Intermediate' },
                         { value: 'advanced', label: 'Advanced' }
                     ],
-                    defaultValue: gameConfig.difficulty || 'beginner',
+                    defaultValue: gameConfig.parameters.difficulty || { label: 'Dificultad', value: 'beginner' },
                     description: 'Choose the overall difficulty of the game'
                 },
                 {
@@ -628,80 +636,107 @@ export class ParameterFormFactory {
                 {
                     name: 'difficulty',
                     label: 'Difficulty Level',
-                    type: 'select',
-                    size: 'col-span-1',
+                    type: 'customSelect',
                     options: [
-                        { value: 'easy', label: 'Easy' },
-                        { value: 'medium', label: 'Medium' },
-                        { value: 'hard', label: 'Hard' }
+                        { value: 'beginner', label: 'Beginner' },
+                        { value: 'intermediate', label: 'Intermediate' },
+                        { value: 'advanced', label: 'Advanced' }
                     ],
                     defaultValue: gameConfig.parameters.difficulty || 'easy',
-                    description: 'Choose the difficulty level of tongue twisters'
+                    description: 'Select the difficulty of tongue twisters'
+                },
+                {
+                    name: 'useTimer',
+                    label: 'Enable Timer',
+                    type: 'checkbox',
+                    defaultValue: gameConfig.parameters.useTimer || false,
+                    description: 'Set a time limit for each twister'
                 },
                 {
                     name: 'showTranslation',
                     label: 'Show Translation',
                     type: 'checkbox',
-                    size: 'col-span-1',
-                    defaultValue: gameConfig.parameters.showTranslation !== undefined
-                        ? gameConfig.parameters.showTranslation
-                        : true,
-                    description: 'Display translations for tongue twisters'
+                    defaultValue: gameConfig.parameters.showTranslation || true,
+                    description: 'Show translation of tongue twisters'
                 },
                 {
-                    name: 'useRhythm',
-                    label: 'Use Rhythm',
-                    type: 'checkbox',
-                    size: 'col-span-1',
-                    defaultValue: gameConfig.parameters.useRhythm !== undefined
-                        ? gameConfig.parameters.useRhythm
-                        : true,
-                    description: 'Enable rhythm indicators for better timing'
-                },
-                {
-                    name: 'practiceMode',
-                    label: 'Practice Mode',
-                    type: 'checkbox',
-                    size: 'col-span-1',
-                    defaultValue: gameConfig.parameters.practiceMode !== undefined
-                        ? gameConfig.parameters.practiceMode
-                        : true,
-                    description: 'Enable step-by-step practice mode'
+                    name: 'timeLimitSeconds',
+                    label: 'Time Limit (seconds)',
+                    type: 'range',
+                    min: 30,
+                    max: 300,
+                    step: 10,
+                    defaultValue: gameConfig.parameters.timeLimitSeconds || 60,
+                    description: 'Time allowed for each tongue twister',
+                    visible: (values) => values.useTimer
                 },
                 {
                     name: 'speedMultiplier',
-                    label: 'Speech Speed',
+                    label: 'Playback Speed',
                     type: 'range',
-                    size: 'col-span-2',
                     min: 0.5,
-                    max: 2.0,
+                    max: 2,
                     step: 0.1,
-                    defaultValue: gameConfig.parameters.speedMultiplier || 1.0,
-                    description: 'Adjust the speed of pronunciation'
-                },
-                {
-                    name: 'timeLimit',
-                    label: 'Time Limit',
-                    type: 'number',
-                    size: 'col-span-1',
-                    min: 0,
-                    max: 600,
-                    step: 30,
-                    defaultValue: gameConfig.parameters.timeLimit || 300,
-                    description: 'Time limit in seconds (0 for no limit)',
-                    visible: (values) => !values.practiceMode
-                },
-                {
-                    name: 'attempts',
-                    label: 'Attempts per Twister',
-                    type: 'number',
-                    size: 'col-span-1',
-                    min: 1,
-                    max: 5,
-                    defaultValue: gameConfig.parameters.attempts || 3,
-                    description: 'Number of attempts allowed per tongue twister'
+                    defaultValue: gameConfig.parameters.speedMultiplier || 1,
+                    description: 'Adjust the speed of audio playback'
                 }
             ]
         };
     }
-} 
+
+    // Método para crear formulario específico de SimonSays
+    private static createSimonSaysForm(gameConfig: IGame): FormDefinition {
+        return {
+            id: 'simon-says-form',
+            title: 'Simon Says Configuration',
+            fields: [
+                {
+                    name: 'difficulty',
+                    label: 'Difficulty Level',
+                    type: 'customSelect',
+                    options: [
+                        { value: 'beginner', label: 'Beginner' },
+                        { value: 'intermediate', label: 'Intermediate' },
+                        { value: 'advanced', label: 'Advanced' }
+                    ],
+                    defaultValue: gameConfig.parameters.difficulty || 'beginner',
+                    description: 'Select the difficulty of commands'
+                },
+                {
+                    name: 'useAudio',
+                    label: 'Enable Audio',
+                    type: 'checkbox',
+                    defaultValue: gameConfig.parameters.useAudio || true,
+                    description: 'Listen to commands with text-to-speech'
+                },
+                {
+                    name: 'showTranslation',
+                    label: 'Show Translation',
+                    type: 'checkbox',
+                    defaultValue: gameConfig.parameters.showTranslation || true,
+                    description: 'Show Spanish translation of commands'
+                },
+                {
+                    name: 'useTimer',
+                    label: 'Enable Timer',
+                    type: 'checkbox',
+                    defaultValue: gameConfig.parameters.timeLimit ? true : false,
+                    description: 'Set a time limit for the game'
+                },
+                {
+                    name: 'timeLimit',
+                    label: 'Time Limit (seconds)',
+                    type: 'range',
+                    min: 30,
+                    max: 300,
+                    step: 10,
+                    defaultValue: gameConfig.parameters.timeLimit || 120,
+                    description: 'Time allowed for the game session',
+                    visible: (values) => values.useTimer
+                }
+            ]
+        };
+    }
+
+
+}

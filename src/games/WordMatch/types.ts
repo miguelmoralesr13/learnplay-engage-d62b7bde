@@ -6,6 +6,7 @@ export interface WordPair {
 }
 
 export interface WordMatchParameters {
+    difficulty: { label: string; value: DifficultyLevel };
     timerEnabled: boolean;
     pairCount: number;
 }
@@ -13,12 +14,14 @@ export interface WordMatchParameters {
 export interface WordMatchGameState {
     words: string[];
     translations: string[];
-    selectedWord: number | null;
-    selectedTranslation: number | null;
-    matchedPairs: number[];
+    selectedCards: string[];
+    matchedPairs: string[];
     incorrectAttempts: number;
     timeLeft: number;
     gameStartTime: number;
+    gameConfig: WordMatchConfig | null;
+    parameters: WordMatchParameters | null;
+    timerId: number | null;
     metrics: {
         correct: number;
         incorrect: number;

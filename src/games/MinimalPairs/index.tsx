@@ -12,11 +12,12 @@ import { getAllMinimalPairs } from './data/minimalPairsData';
 import MinimalPairsConfig from './config';
 import { DifficultyLevel } from '@/types/game';
 import { MinimalPairsParameters } from './types/game';
-import { Loader2, Volume2 } from 'lucide-react';
+import { Loader2, Volume2, RefreshCw } from 'lucide-react';
 import InstructionsPanel from '@/components/game/InstructionsPanel';
 import GameWrapper from '@/components/game/GameWrapper';
 import { log } from 'console';
 import { useTextToSpeech } from '@/hooks/useTextToSpeech';
+import FeedbackDisplay from '@/components/game/FeedbackDisplay';
 
 type GameStage = 'parameters' | 'instructions' | 'playing' | 'complete';
 
@@ -110,17 +111,27 @@ const MinimalPairsChallenge: React.FC = () => {
 
             case 'complete':
                 return (
-                    <GameComplete
+                    <FeedbackDisplay
+                        gameId={MinimalPairsConfig.id}
                         score={gameState.score}
+                        maxScore={gameState.pairs.length * 20} // Cada par vale hasta 20 puntos
                         metrics={{
-                            correctWords: gameState.metrics.correctAnswers,
-                            totalAttempts: gameState.metrics.totalAttempts,
-                            averageScore: gameState.score / Math.max(1, gameState.metrics.totalAttempts),
-                            completionTime: gameState.metrics.completionTime,
-                            startTime: gameState.metrics.startTime,
-                            endTime: gameState.metrics.endTime || 0
+                            correct: gameState.metrics.correctAnswers,
+                            incorrect: gameState.metrics.totalAttempts - gameState.metrics.correctAnswers,
+                            timeSpent: gameState.metrics.completionTime,
+                            accuracy: Math.round((gameState.metrics.correctAnswers / Math.max(1, gameState.metrics.totalAttempts)) * 100)
                         }}
-                        onRestart={restartGame}
+                        customMetrics={[
+                            {
+                                label: 'Tiempo de juego',
+                                value: `${Math.floor(gameState.metrics.completionTime / 60)}m ${gameState.metrics.completionTime % 60}s`
+                            },
+                            {
+                                label: 'Pares completados',
+                                value: `${gameState.currentPairIndex}/${gameState.pairs.length}`
+                            }
+                        ]}
+                        onPlayAgain={restartGame}
                     />
                 );
 
@@ -268,6 +279,27 @@ const MinimalPairsChallenge: React.FC = () => {
                                 </motion.div>
                             )}
                         </AnimatePresence>
+
+                        {!gameState.gameComplete && (
+                            <div className="mt-8 border-t pt-4 flex justify-between items-center">
+                                <div className="flex items-center gap-4">
+                                    <div className="text-sm text-green-600">
+                                        Correctas: {gameState.metrics.correctAnswers}
+                                    </div>
+                                    <div className="text-sm text-red-600">
+                                        Incorrectas: {gameState.metrics.totalAttempts - gameState.metrics.correctAnswers}
+                                    </div>
+                                </div>
+
+                                <button
+                                    className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                    onClick={endGame}
+                                >
+                                    <RefreshCw className="w-4 h-4" />
+                                    <span>Terminar juego</span>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 );
         }

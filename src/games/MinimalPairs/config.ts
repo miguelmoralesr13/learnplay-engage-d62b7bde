@@ -1,19 +1,19 @@
 import { IGame } from '@/types/game';
+import { MinimalPairsParameters } from './types/game';
 
 const MinimalPairsConfig: IGame = {
     id: 'minimal-pairs',
-    type: 'Audio',
-    difficulty: 'beginner',
+    type: 'Speaking',
     category: 'Listening',
     parameters: {
-        difficulty: 'beginner',
+        difficulty: { label: 'Dificultad', value: 'beginner' },
         pairCount: 10,
         categories: [
             { value: 'vowels', label: 'Vocales' },
             { value: 'consonants', label: 'Consonantes' }
         ],
         showPhonetics: true
-    },
+    } as MinimalPairsParameters,
     instructions: [
         "Escucharás una palabra en inglés - presta mucha atención a su pronunciación",
         "Se te mostrarán dos palabras similares con una diferencia sutil de pronunciación",

@@ -1,13 +1,11 @@
-import { Game } from '@/store/gameStore';
+import { Game } from "@/store/gameStore";
 
 export const gameMetadata: Game = {
     id: 'tongue-twisters',
-    name: 'Tongue Twisters',
-    description: 'Improve your pronunciation with fun tongue twisters',
+    name: 'Tongue Twisters Practice',
+    description: 'Improve pronunciation with fun tongue twisters',
     category: 'pronunciation',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/images/games/tongue-twisters.png',
+    thumbnail: '/images/games/tongue-twisters-thumbnail.png',
     path: '/games/tongue-twisters'
-};
-
-export default gameMetadata; 
+}; 

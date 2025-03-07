@@ -19,6 +19,7 @@ export interface DrawingObject {
 }
 
 export interface PaintDrawingParameters {
+    difficulty: { label: string; value: DifficultyLevel };
     roundsCount: number;
     timerEnabled: boolean;
     timePerRound: number;

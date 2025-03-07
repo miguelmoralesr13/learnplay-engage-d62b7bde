@@ -24,7 +24,7 @@ export interface MinimalPair {
 export interface MinimalPairsParameters {
     pairCount: number;
     categories: { value: string; label: string }[];
-    difficulty: DifficultyLevel;
+    difficulty: { label: string; value: DifficultyLevel };
     showPhonetics: boolean;
     timeLimit: number; // in seconds, 0 = no limit
     language?: string;

@@ -1,4 +1,4 @@
-export type GameType = 'Writing' | 'Selection' | 'Canvas' | 'Audio';
+export type GameType = 'Vocabulary' | 'Grammar' | 'Speaking' | 'Writing' | 'Reading' | 'Listening';
 export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
 export type GameCategory = 'Grammar' | 'Vocabulary' | 'Pronunciation' | 'Listening' | 'Reading' | 'Arithmetic';
 export type GameStatus = 'idle' | 'loading' | 'playing' | 'completed';
@@ -8,29 +8,14 @@ export interface GameParameters {
     [key: string]: any;
 }
 
-export interface VisualConfig {
-    showTimerPreview: boolean;
-    showSpeedPreview: boolean;
-    showDifficultyBadge: boolean;
-    rhythmVisualization: boolean;
-    speedControlType: 'slider' | 'buttons';
-    timerStyle: 'circular' | 'linear';
-    difficultyColors: {
-        easy: string;
-        medium: string;
-        hard: string;
-    };
-}
-
-export interface IGame {
+export interface IGame<T = any> {
     id: string;       // ID único del juego para seleccionar el formulario
     type: GameType;
-    difficulty: DifficultyLevel;
     category: GameCategory;
-    parameters: Record<string, any>;
+    parameters: T;
     instructions: string[];
     dynamicParameters?: Record<string, any>;
-    visualConfig?: VisualConfig;
+    onComplete?: (results: any) => void;
 }
 
 export interface GameMetrics {
@@ -44,4 +29,18 @@ export interface GameConfig {
     gameId: string;
     difficulty: DifficultyLevel;
     parameters: GameParameters;
-} 
+}
+
+export interface GameMetadata {
+    id: string;
+    name: string;
+    description: string;
+    instructions: string[];
+    icon: string;
+    coverImage: string;
+    category: GameCategory;
+    tags: string[];
+    duration: string;
+    difficulty: DifficultyLevel;
+    skills: string[];
+}

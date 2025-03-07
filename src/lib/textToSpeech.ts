@@ -1,4 +1,5 @@
 import { getAudioContext, createAnalyzer, getAudioLevels } from '@/lib/audioUtils';
+import { useCallback } from 'react';
 
 // Add export to the interface
 export interface TextToSpeechOptions {
@@ -207,4 +208,18 @@ export const getTextToSpeech = (options: TextToSpeechOptions = {}): TextToSpeech
   }
 
   return ttsInstance;
+};
+
+export const useTextToSpeech = () => {
+  const speak = useCallback((text: string) => {
+    if (!window.speechSynthesis) {
+      console.error('Speech synthesis not supported in this browser');
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  return { speak };
 };

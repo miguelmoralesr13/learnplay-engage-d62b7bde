@@ -3,8 +3,7 @@ import { WordMatchParameters } from './types';
 
 const WordMatchGameConfig: IGame = {
     id: 'word-match',
-    type: 'Match',
-    difficulty: 'beginner',
+    type: 'Vocabulary',
     category: 'Vocabulary',
     parameters: {
         timerEnabled: true,

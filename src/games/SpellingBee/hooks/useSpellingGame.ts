@@ -12,10 +12,8 @@ import {
     calculateScore
 } from '../utils/spellingData';
 import { useAudioService } from './useAudioService';
-import { DifficultyLevel } from '@/types/game';
 
 export const useSpellingGame = (
-    difficulty: DifficultyLevel,
     parameters: SpellingBeeParameters
 ) => {
     // Estado del juego
@@ -52,8 +50,7 @@ export const useSpellingGame = (
     const startGame = useCallback(() => {
         // Obtener palabras según parámetros
         const gameWords = getWordsByFilters(
-            parameters.categories,
-            difficulty,
+            parameters.categories.map(category => category.value),
             parameters.wordsPerRound
         );
 
@@ -82,7 +79,7 @@ export const useSpellingGame = (
                 commonMistakes: []
             }
         });
-    }, [difficulty, parameters]);
+    }, [parameters]);
 
     // Manejar cambios en la entrada del usuario
     const handleInputChange = useCallback((text: string) => {

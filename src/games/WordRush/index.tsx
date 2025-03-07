@@ -8,7 +8,7 @@ import GameWrapper from '@/components/game/GameWrapper';
 import ParametersForm from '@/components/game/ParametersForm';
 import InstructionsPanel from '@/components/game/InstructionsPanel';
 import FeedbackDisplay from '@/components/game/FeedbackDisplay';
-import { CloudLightning, Pause, Play, RotateCcw } from 'lucide-react';
+import { CloudLightning, Pause, Play, RotateCcw, RefreshCw } from 'lucide-react';
 import WordRushGameConfig from './config';
 import { DifficultyLevel } from '@/types/game';
 import { WordRushParameters, WordCategory } from './types';
@@ -117,10 +117,27 @@ const WordRush = () => {
                     >
                         <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                             <div className="flex justify-between items-center mb-3">
-                                <div>
-                                    <span className="text-sm text-gray-500">Tiempo restante:</span>
-                                    <h3 className="text-xl font-bold">{formatTime(gameState.timeLeft)}</h3>
-                                </div>
+                                {/* Solo mostrar el tiempo si está habilitado - ahora con botón de pausa junto a él */}
+                                {parameters.timerEnabled && (
+                                    <div className="flex items-center gap-2">
+                                        <div>
+                                            <span className="text-sm text-gray-500">Tiempo restante:</span>
+                                            <h3 className="text-xl font-bold">{formatTime(gameState.timeLeft)}</h3>
+                                        </div>
+                                        {/* Botón de pausa aquí junto al temporizador */}
+                                        <button
+                                            onClick={togglePause}
+                                            className="p-2 bg-gray-100 rounded-full text-gray-700 hover:bg-gray-200"
+                                            title={gameState.gameStatus === 'playing' ? 'Pausar' : 'Reanudar'}
+                                        >
+                                            {gameState.gameStatus === 'playing' ? (
+                                                <Pause className="w-4 h-4" />
+                                            ) : (
+                                                <Play className="w-4 h-4" />
+                                            )}
+                                        </button>
+                                    </div>
+                                )}
 
                                 <div className="text-center">
                                     <span className="text-sm text-gray-500">Palabra</span>
@@ -135,12 +152,14 @@ const WordRush = () => {
                                 </div>
                             </div>
 
-                            {/* Barra de tiempo */}
-                            <TimerDisplay
-                                timeLeft={gameState.timeLeft}
-                                totalTime={parameters.timeLimit}
-                                formattedTime={formatTime(gameState.timeLeft)}
-                            />
+                            {/* Solo mostrar la barra de tiempo si está habilitado */}
+                            {parameters.timerEnabled && (
+                                <TimerDisplay
+                                    timeLeft={gameState.timeLeft}
+                                    totalTime={parameters.timeLimit}
+                                    formattedTime={formatTime(gameState.timeLeft)}
+                                />
+                            )}
 
                             {/* Barra de progreso */}
                             <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -198,17 +217,23 @@ const WordRush = () => {
                             ))}
                         </div>
 
-                        {/* Controles */}
-                        <div className="mt-8 flex justify-center space-x-4">
+                        {/* Estadísticas y botón de terminar al final */}
+                        <div className="flex justify-between items-center mt-6">
+                            <div className="flex items-center gap-4">
+                                <div className="text-sm text-green-600">
+                                    Correctas: {gameState.metrics.correct}
+                                </div>
+                                <div className="text-sm text-red-600">
+                                    Incorrectas: {gameState.metrics.incorrect}
+                                </div>
+                            </div>
+
                             <button
-                                onClick={togglePause}
-                                className="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-gray-200"
+                                className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-muted-foreground hover:bg-secondary"
+                                onClick={handleGameComplete}
                             >
-                                {gameState.gameStatus === 'playing' ? (
-                                    <Pause className="w-5 h-5" />
-                                ) : (
-                                    <Play className="w-5 h-5" />
-                                )}
+                                <RefreshCw className="w-4 h-4" />
+                                <span>Terminar juego</span>
                             </button>
                         </div>
                     </motion.div>
