@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Practica vocabulario a máxima velocidad desafiando al cronómetro',
     category: 'vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/word-rush-thumbnail.png',
+    thumbnail: '/images/games/Word-Rush.webp',
     path: '/games/word-rush'
 }; 

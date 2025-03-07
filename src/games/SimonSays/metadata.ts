@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Sigue las instrucciones en inglés para tocar diferentes partes del cuerpo. ¡Escucha atentamente!',
     category: 'Vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/images/games/simon-says-thumbnail.jpg',
+    thumbnail: '/images/games/Simon-Says-Body-Edition.webp',
     path: '/games/simon-says'
 }; 

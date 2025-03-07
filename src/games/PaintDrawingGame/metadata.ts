@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Aprende colores y objetos en inglés mientras te diviertes dibujando',
     category: 'vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/paint-drawing-game-thumbnail.png',
+    thumbnail: '/images/games/Paint-Drawing-Game.webp',
     path: '/games/paint-drawing-game'
 }; 

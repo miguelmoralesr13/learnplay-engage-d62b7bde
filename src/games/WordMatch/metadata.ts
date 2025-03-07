@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Match English words with their meanings',
     category: 'vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/b871120f-9f5f-4e93-b53a-648caaf93c3b.png',
+    thumbnail: '/images/games/Word-Match.webp',
     path: '/games/word-match'
 }; 

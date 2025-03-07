@@ -206,7 +206,9 @@ const GamesPage = () => {
         {filteredGames.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredGames.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <div key={game.id} className="flex flex-col h-full">
+                <GameCard game={game} />
+              </div>
             ))}
           </div>
         ) : (

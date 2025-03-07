@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Learn and practice English verb conjugations',
     category: 'grammar',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/verb-forms-thumbnail.png',
+    thumbnail: '/images/games/Verb-Forms-Master.webp',
     path: '/games/verb-forms'
 }; 

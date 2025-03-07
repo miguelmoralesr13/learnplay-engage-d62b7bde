@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Construye oraciones gramaticalmente correctas ordenando bloques de palabras',
     category: 'grammar',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/sentence-builder-thumbnail.png',
+    thumbnail: '/images/games/Sentence-Builder.webp',
     path: '/games/sentence-builder'
 }; 

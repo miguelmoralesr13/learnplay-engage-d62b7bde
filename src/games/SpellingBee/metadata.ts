@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Mejora tu ortografía en inglés a través de dictado de audio',
     category: 'vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/lovable-uploads/spelling-bee-thumbnail.png',
+    thumbnail: '/images/games/Spelling-Bee.webp',
     path: '/games/spelling-bee'
 }; 

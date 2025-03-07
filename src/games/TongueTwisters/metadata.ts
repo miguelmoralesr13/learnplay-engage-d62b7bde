@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Improve pronunciation with fun tongue twisters',
     category: 'pronunciation',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/images/games/tongue-twisters-thumbnail.png',
+    thumbnail: '/images/games/Tongue-Twisters.webp',
     path: '/games/tongue-twisters'
 }; 

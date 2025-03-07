@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     description: 'Write numbers in English as fast as you can and help your runner reach the finish line',
     category: 'vocabulary',
     difficulty: ['beginner', 'intermediate', 'advanced'],
-    thumbnail: '/images/games/number-race-thumbnail.png',
+    thumbnail: '/images/games/Number-Race.webp',
     path: '/games/number-race'
 }; 

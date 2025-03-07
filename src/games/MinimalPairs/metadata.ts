@@ -6,6 +6,6 @@ export const gameMetadata: Game = {
     name: "Minimal Pairs Challenge",
     category: "pronunciation",
     difficulty: ["beginner", "intermediate", "advanced"],
-    thumbnail: "/images/games/minimal-pairs-thumbnail.jpg",
+    thumbnail: "/images/games/Minimal-Pairs-Challenge.webp",
     path: "/games/minimal-pairs"
 };
